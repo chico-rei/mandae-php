@@ -29,21 +29,13 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
      */
     public $dimensions;
 
-    public function getMethod()
+    /**
+     * PostalCodeRatesRequest constructor.
+     * @param array $values
+     */
+    public function __construct(array $values = [])
     {
-        return 'GET';
-    }
-
-    public function getPath()
-    {
-        return sprintf('postalcodes/%s/rates', $this->postalCode);
-    }
-
-    public function getPayload()
-    {
-        return array_merge([
-            'declaredValue' => $this->declaredValue,
-        ], $this->dimensions->toArray());
+        parent::__construct($values);
     }
 
     /**
@@ -111,6 +103,23 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
     {
         $this->dimensions = $dimensions;
         return $this;
+    }
+
+    public function getMethod()
+    {
+        return 'POST';
+    }
+
+    public function getPath()
+    {
+        return sprintf('postalcodes/%s/rates', $this->postalCode);
+    }
+
+    public function getPayload()
+    {
+        return array_merge([
+            'declaredValue' => $this->declaredValue,
+        ], $this->dimensions->toArray());
     }
 
     public function toArray(): array

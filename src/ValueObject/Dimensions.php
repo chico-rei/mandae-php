@@ -35,6 +35,15 @@ class Dimensions extends MandaeObject
     public $weight;
 
     /**
+     * Dimensions constructor.
+     * @param array $values
+     */
+    public function __construct(array $values = [])
+    {
+        parent::__construct($values);
+    }
+
+    /**
      * @return float|null
      */
     public function getHeight(): ?float

@@ -18,7 +18,7 @@ class ShippingService extends MandaeObject
      *
      * @var null|integer
      */
-    public $quantityDays;
+    public $days;
 
     /**
      * Price in BRL
@@ -26,6 +26,15 @@ class ShippingService extends MandaeObject
      * @var null|float
      */
     public $price;
+
+    /**
+     * ShippingService constructor.
+     * @param array $values
+     */
+    public function __construct(array $values = [])
+    {
+        parent::__construct($values);
+    }
 
     /**
      * @return null|string
@@ -48,18 +57,18 @@ class ShippingService extends MandaeObject
     /**
      * @return int|null
      */
-    public function getQuantityDays(): ?int
+    public function getDays(): int
     {
-        return $this->quantityDays;
+        return $this->days;
     }
 
     /**
-     * @param int|null $quantityDays
+     * @param int|null $days
      * @return ShippingService
      */
-    public function setQuantityDays(?int $quantityDays): ShippingService
+    public function setDays(int $days): ShippingService
     {
-        $this->quantityDays = $quantityDays;
+        $this->days = $days;
         return $this;
     }
 
@@ -85,7 +94,7 @@ class ShippingService extends MandaeObject
     {
         return [
             'name' => $this->getName(),
-            'quantityDays' => $this->getQuantityDays(),
+            'days' => $this->getDays(),
             'price' => $this->getPrice(),
         ];
     }

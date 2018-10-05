@@ -52,14 +52,11 @@ class Client
             return $this->handleResponse($response);
         } catch (ClientException $clientException) {
             $response = $this->handleResponse($clientException->getResponse());
+            $error = $response['error'];
 
-            if ($response['error']) {
-                throw new MandaeException($response['error']['message'], $response['error']['code']);
-            } else {
-                throw new MandaeException($clientException->getMessage(), $clientException->getCode());
-            }
+            throw new MandaeException($error['message'], $error['code'], $clientException->getRequest(), $clientException->getResponse());
         } catch (ServerException $serverException) {
-            throw new MandaeException('Ocorreu um erro na API da Mandaê', 500);
+            throw new MandaeException('Ocorreu um erro na API da Mandaê', 500, $serverException->getRequest(), $serverException->getResponse());
         } catch (RequestException $e) {
             throw new MandaeClientException($e->getMessage(), $e->getCode());
         } catch (\GuzzleHttp\Exception\GuzzleException $e) {
