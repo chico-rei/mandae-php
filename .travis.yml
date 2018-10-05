@@ -1,0 +1,16 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+
+install:
+- composer update
+
+script:
+- mkdir -p build/logs
+- php vendor/bin/phpunit -c phpunit.xml.dist
+
+after_success:
+- travis_retry php vendor/bin/coveralls -v -r /home/travis/build/chico-rei/mandae-php/

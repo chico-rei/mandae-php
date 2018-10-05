@@ -1,0 +1,32 @@
+{
+    "name": "chico-rei/mandae-php",
+    "type": "library",
+    "description": "chico-rei",
+    "keywords": ["Mandae","Manda Aê"],
+    "homepage": "https://github.com/chico-rei/mandae-php",
+    "license": "MIT",
+    "version": "0.1",
+    "authors": [{
+        "name": "Chico Rei",
+        "email": "php@chicorei.com.br"
+    }],
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.2",
+        "php-coveralls/php-coveralls": "~1.0"
+    },
+    "scripts": {
+        "test": [
+            "@phpunit"
+        ],
+        "phpunit": "php vendor/bin/phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "ChicoRei\\Packages\\Mandae\\": "src"
+        }
+    }
+}
