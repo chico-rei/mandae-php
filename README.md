@@ -1,5 +1,7 @@
 # Mandaê API client wrapper for PHP
 
+[![Build Status](https://travis-ci.org/chico-rei/mandae-php.svg)](https://travis-ci.org/chico-rei/mandae-php)
+
 This is a PHP client wrapper for [Mandaê API v2](https://dev.mandae.com.br/api/index.html).
 
 ## Install
