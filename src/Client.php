@@ -6,6 +6,7 @@ use ChicoRei\Packages\Mandae\Exception\MandaeClientException;
 use ChicoRei\Packages\Mandae\Exception\MandaeException;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use Psr\Http\Message\ResponseInterface;
@@ -50,17 +51,13 @@ class Client
                 ['json' => $request->getPayload()]);
 
             return $this->handleResponse($response);
-        } catch (ClientException $clientException) {
-            $response = $this->handleResponse($clientException->getResponse());
+        } catch (ServerException | ClientException $exception) {
+            $response = $this->handleResponse($exception->getResponse());
             $error = $response['error'];
 
-            throw new MandaeException($error['message'], $error['code'], $clientException->getRequest(), $clientException->getResponse());
-        } catch (ServerException $serverException) {
-            throw new MandaeException('Ocorreu um erro na API da Mandaê', 500, $serverException->getRequest(), $serverException->getResponse());
-        } catch (RequestException $e) {
-            throw new MandaeClientException($e->getMessage(), $e->getCode());
-        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
-            throw new MandaeClientException($e->getMessage(), $e->getCode());
+            throw new MandaeException($error['message'], $error['code'], $exception->getRequest(), $exception->getResponse());
+        }  catch (GuzzleException | RequestException $exception) {
+            throw new MandaeClientException($exception->getMessage(), $exception->getCode());
         }
     }
 
