@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class MandaeTests extends TestCase
+class MandaeTest extends TestCase
 {
     public function testTest()
     {

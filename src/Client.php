@@ -20,20 +20,20 @@ class Client
 
     /**
      * @param $apiToken
+     * @param $sandbox
      * @param array $options
      */
-    public function __construct($apiToken, array $options)
+    public function __construct($apiToken, $sandbox, array $options)
     {
-        $this->guzzle = new Guzzle([
-            'base_uri' => $options['sandbox'] ? Mandae::API_SANDBOX_URL : Mandae::API_URL,
-            'timeout' => $options['timeout'],
+        $this->guzzle = new Guzzle(array_merge($options, [
+            'base_uri' => $sandbox ? Mandae::API_SANDBOX_URL : Mandae::API_URL,
             'http_errors' => true,
             'headers' => [
                 'Authorization' => $apiToken,
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ],
-        ]);
+        ]));
     }
 
     /**
@@ -50,12 +50,20 @@ class Client
                 $request->getPath(),
                 ['json' => $request->getPayload()]);
 
-            return $this->handleResponse($response);
+             $parsedResponse = $this->handleResponse($response);
+
+             if(isset($parsedResponse['error'])) {
+                 // Mandae API isn't responding with correct HTTP Status on some ending points
+                 throw new MandaeException($parsedResponse['error']['message'], $parsedResponse['error']['code'], null, $response);
+             }
+
+             return $parsedResponse;
         } catch (ServerException | ClientException $exception) {
             $response = $this->handleResponse($exception->getResponse());
-            $error = $response['error'];
+            $message = $response['error']['message'] ?? $exception->getMessage();
+            $code = $response['error']['code'] ?? $exception->getCode();
 
-            throw new MandaeException($error['message'], $error['code'], $exception->getRequest(), $exception->getResponse());
+            throw new MandaeException($message, $code, $exception->getRequest(), $exception->getResponse());
         }  catch (GuzzleException | RequestException $exception) {
             throw new MandaeClientException($exception->getMessage(), $exception->getCode());
         }

@@ -3,6 +3,7 @@
 namespace ChicoRei\Packages\Mandae;
 
 use ChicoRei\Packages\Mandae\Handler\PostalCodeHandler;
+use ChicoRei\Packages\Mandae\Handler\TrackingHandler;
 
 class Mandae
 {
@@ -31,7 +32,6 @@ class Mandae
      * @param array
      */
     private $defaultOptions = [
-        'sandbox' => false,
         'timeout' => 5.0,
     ];
 
@@ -41,11 +41,17 @@ class Mandae
     private $postalCodeHandler;
 
     /**
+     * @param TrackingHandler
+     */
+    private $trackingHandler;
+
+    /**
      * MandaeService constructor.
      * @param string $apiToken Mandae Authorization API Token
-     * @param array $options
+     * @param bool $sandbox Use sandbox API
+     * @param array $options Guzzle options except base_uri, http_errors and headers
      */
-    public function __construct($apiToken, array $options = [])
+    public function __construct($apiToken, $sandbox = false, array $options = [])
     {
         if (!isset($apiToken) || empty($apiToken)) {
             throw new \InvalidArgumentException('API Token can\'t be null or empty!');
@@ -53,7 +59,7 @@ class Mandae
 
         $options = array_merge($this->defaultOptions, $options);
 
-        $this->client = new Client($apiToken, $options);
+        $this->client = new Client($apiToken, $sandbox, $options);
     }
 
     /**
@@ -74,5 +80,17 @@ class Mandae
         }
 
         return $this->postalCodeHandler;
+    }
+
+    /**
+     * @return TrackingHandler
+     */
+    public function tracking(): TrackingHandler
+    {
+        if (!isset($this->trackingHandler)) {
+            $this->trackingHandler = new TrackingHandler($this->client);
+        }
+
+        return $this->trackingHandler;
     }
 }

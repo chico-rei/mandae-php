@@ -39,7 +39,7 @@ class PostalCodeRatesResponse extends MandaeObject
         return new self([
             'postalCode' => $array['postalCode'],
             'shippingServices' => array_map(function ($shipping) {
-                return new ShippingService($shipping);
+                return ShippingService::createFromArray($shipping);
             }, $array['shippingServices'] ?? []),
         ]);
     }

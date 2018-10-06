@@ -47,7 +47,7 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
         return new self([
             'postalCode' => $array['postalCode'] ?? null,
             'declaredValue' => $array['declaredValue'] ?? null,
-            'dimensions' => new Dimensions($array['dimensions'] ?? []),
+            'dimensions' => Dimensions::createFromArray($array['dimensions'] ?? []),
         ]);
     }
 
@@ -105,17 +105,17 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
         return $this;
     }
 
-    public function getMethod()
+    public function getMethod(): string
     {
         return 'POST';
     }
 
-    public function getPath()
+    public function getPath(): string
     {
         return sprintf('postalcodes/%s/rates', $this->postalCode);
     }
 
-    public function getPayload()
+    public function getPayload(): ?array
     {
         return array_merge([
             'declaredValue' => $this->declaredValue,
@@ -127,7 +127,7 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
         return [
             'postalCode' => $this->getPostalCode(),
             'declaredValue' => $this->getDeclaredValue(),
-            'dimensions' => $this->getDimensions()->toArray()
+            'dimensions' => $this->getDimensions() ? $this->getDimensions()->toArray() : null,
         ];
     }
 }

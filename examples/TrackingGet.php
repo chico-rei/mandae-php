@@ -8,14 +8,8 @@ use \ChicoRei\Packages\Mandae\Mandae;
 $Mandae = new Mandae('TOKEN', true);
 
 try {
-    $response = $Mandae->postalCode()->rates([
-        'postalCode' => 36016450,
-        'dimensions' => [
-            'height' => 20,
-            'weight' => 1,
-            'width' => 20,
-            'length' => 10,
-        ]
+    $response = $Mandae->tracking()->get([
+        'trackingCode' => '23A6BKMQ313M0'
     ]);
 
     var_dump($response->toArray());

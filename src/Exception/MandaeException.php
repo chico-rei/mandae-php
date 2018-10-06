@@ -8,16 +8,23 @@ use GuzzleHttp\Psr7\Response;
 class MandaeException extends \Exception
 {
     /**
-     * @var Request
+     * @var null|Request
      */
     private $request;
 
     /**
-     * @var Response
+     * @var null|Response
      */
     private $response;
 
-    public function __construct(string $message = "", int $code = 0, Request $request, Response $response)
+    /**
+     * MandaeException constructor.
+     * @param string $message
+     * @param int $code
+     * @param Request|null $request
+     * @param Response|null $response
+     */
+    public function __construct(string $message = "", int $code = 0, ?Request $request = null, ?Response $response = null)
     {
         parent::__construct($message, $code);
 
@@ -26,17 +33,17 @@ class MandaeException extends \Exception
     }
 
     /**
-     * @return Request
+     * @return null|Request
      */
-    public function getRequest(): Request
+    public function getRequest(): ?Request
     {
         return $this->request;
     }
 
     /**
-     * @return Response
+     * @return null|Response
      */
-    public function getResponse(): Response
+    public function getResponse(): ?Response
     {
         return $this->response;
     }

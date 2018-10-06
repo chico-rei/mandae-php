@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1538855752">
+  <project timestamp="1538855752">
+    <package name="ChicoRei\Packages\Mandae">
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Client.php">
+        <class name="ChicoRei\Packages\Mandae\Client" namespace="ChicoRei\Packages\Mandae">
+          <metrics complexity="8" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="14" elements="25" coveredelements="16"/>
+        </class>
+        <line num="26" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="45" type="method" name="sendRequest" visibility="public" complexity="4" crap="6.43" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="78" type="method" name="handleResponse" visibility="private" complexity="2" crap="2" count="1"/>
+        <line num="80" type="stmt" count="1"/>
+        <metrics loc="81" ncloc="59" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="14" elements="25" coveredelements="16"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Mandae.php">
+        <class name="ChicoRei\Packages\Mandae\Mandae" namespace="ChicoRei\Packages\Mandae">
+          <metrics complexity="8" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="7" elements="16" coveredelements="8"/>
+        </class>
+        <line num="54" type="method" name="__construct" visibility="public" complexity="3" crap="3.07" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="63" type="stmt" count="1"/>
+        <line num="68" type="method" name="getClient" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="76" type="method" name="postalCode" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="82" type="stmt" count="0"/>
+        <line num="88" type="method" name="tracking" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="90" type="stmt" count="1"/>
+        <line num="91" type="stmt" count="1"/>
+        <line num="94" type="stmt" count="1"/>
+        <metrics loc="96" ncloc="57" classes="1" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="7" elements="16" coveredelements="8"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/MandaeObject.php">
+        <class name="ChicoRei\Packages\Mandae\MandaeObject" namespace="ChicoRei\Packages\Mandae">
+          <metrics complexity="6" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="6" elements="12" coveredelements="8"/>
+        </class>
+        <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="9" type="stmt" count="1"/>
+        <line num="10" type="stmt" count="1"/>
+        <line num="15" type="method" name="fill" visibility="public" complexity="3" crap="3" count="1"/>
+        <line num="17" type="stmt" count="1"/>
+        <line num="18" type="stmt" count="1"/>
+        <line num="19" type="stmt" count="1"/>
+        <line num="22" type="stmt" count="1"/>
+        <line num="28" type="method" name="createFromArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="28" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="6" elements="12" coveredelements="8"/>
+      </file>
+    </package>
+    <package name="ChicoRei\Packages\Mandae\Exception">
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Exception/MandaeClientException.php">
+        <class name="ChicoRei\Packages\Mandae\Exception\MandaeClientException" namespace="ChicoRei\Packages\Mandae\Exception">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="7" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Exception/MandaeException.php">
+        <class name="ChicoRei\Packages\Mandae\Exception\MandaeException" namespace="ChicoRei\Packages\Mandae\Exception">
+          <metrics complexity="7" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+        </class>
+        <line num="27" type="method" name="__construct" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="32" type="stmt" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="38" type="method" name="getRequest" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="46" type="method" name="getResponse" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="30" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="ChicoRei\Packages\Mandae\Handler">
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Handler/PostalCodeHandler.php">
+        <class name="ChicoRei\Packages\Mandae\Handler\PostalCodeHandler" namespace="ChicoRei\Packages\Mandae\Handler">
+          <metrics complexity="4" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="20" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="33" type="method" name="rates" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <metrics loc="46" ncloc="32" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Handler/TrackingHandler.php">
+        <class name="ChicoRei\Packages\Mandae\Handler\TrackingHandler" namespace="ChicoRei\Packages\Mandae\Handler">
+          <metrics complexity="4" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="7" elements="10" coveredelements="8"/>
+        </class>
+        <line num="20" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="22" type="stmt" count="1"/>
+        <line num="23" type="stmt" count="1"/>
+        <line num="33" type="method" name="get" visibility="public" complexity="3" crap="3.04" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <metrics loc="46" ncloc="32" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="7" elements="10" coveredelements="8"/>
+      </file>
+    </package>
+    <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/IRequest.php">
+      <metrics loc="20" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="ChicoRei\Packages\Mandae\Request">
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Request/PostalCodeRatesRequest.php">
+        <class name="ChicoRei\Packages\Mandae\Request\PostalCodeRatesRequest" namespace="ChicoRei\Packages\Mandae\Request">
+          <metrics complexity="20" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="35" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="45" type="method" name="createFromArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="57" type="method" name="getPostalCode" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="66" type="method" name="setPostalCode" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="75" type="method" name="getDeclaredValue" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="84" type="method" name="setDeclaredValue" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="87" type="stmt" count="0"/>
+        <line num="93" type="method" name="getDimensions" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="95" type="stmt" count="0"/>
+        <line num="102" type="method" name="setDimensions" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <line num="105" type="stmt" count="0"/>
+        <line num="108" type="method" name="getMethod" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="110" type="stmt" count="0"/>
+        <line num="113" type="method" name="getPath" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="115" type="stmt" count="0"/>
+        <line num="118" type="method" name="getPayload" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="120" type="stmt" count="0"/>
+        <line num="121" type="stmt" count="0"/>
+        <line num="122" type="stmt" count="0"/>
+        <line num="125" type="method" name="toArray" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="128" type="stmt" count="0"/>
+        <line num="129" type="stmt" count="0"/>
+        <line num="130" type="stmt" count="0"/>
+        <metrics loc="132" ncloc="88" classes="1" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="35" coveredelements="0"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Request/TrackingGetRequest.php">
+        <class name="ChicoRei\Packages\Mandae\Request\TrackingGetRequest" namespace="ChicoRei\Packages\Mandae\Request">
+          <metrics complexity="11" methods="8" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="7" elements="19" coveredelements="12"/>
+        </class>
+        <line num="21" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="23" type="stmt" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="30" type="method" name="createFromArray" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="40" type="method" name="getTrackingCode" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="49" type="method" name="setTrackingCode" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="55" type="method" name="getMethod" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="60" type="method" name="getPath" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="65" type="method" name="getPayload" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <line num="70" type="method" name="toArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <metrics loc="75" ncloc="55" classes="1" methods="8" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="7" elements="19" coveredelements="12"/>
+      </file>
+    </package>
+    <package name="ChicoRei\Packages\Mandae\Response">
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Response/PostalCodeRatesResponse.php">
+        <class name="ChicoRei\Packages\Mandae\Response\PostalCodeRatesResponse" namespace="ChicoRei\Packages\Mandae\Response">
+          <metrics complexity="9" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="24" coveredelements="0"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="37" type="method" name="createFromArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="method" name="anonymousFunction:41#137" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="50" type="method" name="getPostalCode" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="59" type="method" name="setPostalCode" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="68" type="method" name="getShippingServices" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="77" type="method" name="setShippingServices" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="83" type="method" name="toArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="87" type="method" name="anonymousFunction:87#326" complexity="1" crap="2" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <metrics loc="91" ncloc="59" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="24" coveredelements="0"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/Response/TrackingGetResponse.php">
+        <class name="ChicoRei\Packages\Mandae\Response\TrackingGetResponse" namespace="ChicoRei\Packages\Mandae\Response">
+          <metrics complexity="13" methods="13" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="12" elements="38" coveredelements="19"/>
+        </class>
+        <line num="42" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="51" type="method" name="createFromArray" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="method" name="anonymousFunction:57#171" complexity="1" crap="1" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="66" type="method" name="getTrackingCode" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="75" type="method" name="setTrackingCode" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="84" type="method" name="getCarrierCode" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="86" type="stmt" count="1"/>
+        <line num="93" type="method" name="setCarrierCode" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="95" type="stmt" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="102" type="method" name="getCarrierName" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="104" type="stmt" count="1"/>
+        <line num="111" type="method" name="setCarrierName" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="113" type="stmt" count="0"/>
+        <line num="114" type="stmt" count="0"/>
+        <line num="120" type="method" name="getEvents" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="122" type="stmt" count="1"/>
+        <line num="129" type="method" name="setEvents" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="131" type="stmt" count="0"/>
+        <line num="132" type="stmt" count="0"/>
+        <line num="135" type="method" name="toArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="138" type="stmt" count="0"/>
+        <line num="139" type="stmt" count="0"/>
+        <line num="140" type="stmt" count="0"/>
+        <line num="141" type="method" name="anonymousFunction:141#498" complexity="1" crap="2" count="0"/>
+        <line num="142" type="stmt" count="0"/>
+        <line num="143" type="stmt" count="0"/>
+        <metrics loc="145" ncloc="89" classes="1" methods="13" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="12" elements="38" coveredelements="19"/>
+      </file>
+    </package>
+    <package name="ChicoRei\Packages\Mandae\ValueObject">
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/ValueObject/Dimensions.php">
+        <class name="ChicoRei\Packages\Mandae\ValueObject\Dimensions" namespace="ChicoRei\Packages\Mandae\ValueObject">
+          <metrics complexity="18" methods="10" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="28" coveredelements="0"/>
+        </class>
+        <line num="41" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="49" type="method" name="getHeight" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="58" type="method" name="setHeight" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="67" type="method" name="getWidth" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="76" type="method" name="setWidth" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="85" type="method" name="getLength" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="87" type="stmt" count="0"/>
+        <line num="94" type="method" name="setLength" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="97" type="stmt" count="0"/>
+        <line num="103" type="method" name="getWeight" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="105" type="stmt" count="0"/>
+        <line num="112" type="method" name="setWeight" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="114" type="stmt" count="0"/>
+        <line num="115" type="stmt" count="0"/>
+        <line num="118" type="method" name="toArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="121" type="stmt" count="0"/>
+        <line num="122" type="stmt" count="0"/>
+        <line num="123" type="stmt" count="0"/>
+        <line num="124" type="stmt" count="0"/>
+        <metrics loc="126" ncloc="74" classes="1" methods="10" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="28" coveredelements="0"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/ValueObject/Event.php">
+        <class name="ChicoRei\Packages\Mandae\ValueObject\Event" namespace="ChicoRei\Packages\Mandae\ValueObject">
+          <metrics complexity="17" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="8" elements="27" coveredelements="12"/>
+        </class>
+        <line num="35" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="44" type="method" name="createFromArray" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="56" type="method" name="getDate" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="65" type="method" name="setDate" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="74" type="method" name="getName" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="83" type="method" name="setName" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="85" type="stmt" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="92" type="method" name="getDescription" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="101" type="method" name="setDescription" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="103" type="stmt" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <line num="107" type="method" name="toArray" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="110" type="stmt" count="0"/>
+        <line num="111" type="stmt" count="0"/>
+        <line num="112" type="stmt" count="0"/>
+        <metrics loc="114" ncloc="70" classes="1" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="8" elements="27" coveredelements="12"/>
+      </file>
+      <file name="/Users/matheus/Library/Mobile Documents/com~apple~CloudDocs/Development/Git/mandae-php/src/ValueObject/ShippingService.php">
+        <class name="ChicoRei\Packages\Mandae\ValueObject\ShippingService" namespace="ChicoRei\Packages\Mandae\ValueObject">
+          <metrics complexity="12" methods="8" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="22" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="42" type="method" name="getName" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="51" type="method" name="setName" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="60" type="method" name="getDays" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="69" type="method" name="setDays" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="78" type="method" name="getPrice" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="87" type="method" name="setPrice" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="90" type="stmt" count="0"/>
+        <line num="93" type="method" name="toArray" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="97" type="stmt" count="0"/>
+        <line num="98" type="stmt" count="0"/>
+        <metrics loc="100" ncloc="60" classes="1" methods="8" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="22" coveredelements="0"/>
+      </file>
+    </package>
+    <metrics files="15" loc="1168" ncloc="751" classes="13" methods="86" coveredmethods="22" conditionals="0" coveredconditionals="0" statements="189" coveredstatements="61" elements="275" coveredelements="83"/>
+  </project>
+</coverage>

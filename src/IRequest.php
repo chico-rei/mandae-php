@@ -7,15 +7,15 @@ interface IRequest
     /**
      * @return string
      */
-    public function getMethod();
+    public function getMethod(): string;
 
     /**
      * @return string
      */
-    public function getPath();
+    public function getPath(): string;
 
     /**
-     * @return array
+     * @return null|array
      */
-    public function getPayload();
+    public function getPayload(): ?array;
 }
