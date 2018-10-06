@@ -45,8 +45,8 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
     public static function createFromArray(array $array = [])
     {
         return new self([
-            'postalCode' => $array['postalCode'] ?? 'null',
-            'declaredValue' => $array['declaredValue'] ?? 'null',
+            'postalCode' => $array['postalCode'] ?? null,
+            'declaredValue' => $array['declaredValue'] ?? null,
             'dimensions' => new Dimensions($array['dimensions'] ?? []),
         ]);
     }

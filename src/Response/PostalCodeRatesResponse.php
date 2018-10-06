@@ -36,15 +36,11 @@ class PostalCodeRatesResponse extends MandaeObject
      */
     public static function createFromArray(array $array = [])
     {
-        $shippingServices = [];
-
-        foreach ($array['shippingServices'] as $shippingService) {
-            $shippingServices[] = new ShippingService($shippingService);
-        }
-
         return new self([
             'postalCode' => $array['postalCode'],
-            'shippingServices' => $shippingServices,
+            'shippingServices' => array_map(function ($shipping) {
+                return new ShippingService($shipping);
+            }, $array['shippingServices'] ?? []),
         ]);
     }
 
@@ -86,15 +82,11 @@ class PostalCodeRatesResponse extends MandaeObject
 
     public function toArray(): array
     {
-        $shippingServices = [];
-
-        foreach ($this->getShippingServices() as $shippingService) {
-            $shippingServices[] = $shippingService->toArray();
-        }
-
         return [
             'postalCode' => $this->getPostalCode(),
-            'shippingServices' => $shippingServices,
+            'shippingServices' => array_map(function (ShippingService $shipping) {
+                return $shipping->toArray();
+            }, $this->getShippingServices() ?? []),
         ];
     }
 }
