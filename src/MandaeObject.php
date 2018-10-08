@@ -4,6 +4,10 @@ namespace ChicoRei\Packages\Mandae;
 
 abstract class MandaeObject
 {
+    /**
+     * MandaeObject constructor.
+     * @param array $values
+     */
     public function __construct(array $values = [])
     {
         $this->fill($values);
@@ -23,7 +27,7 @@ abstract class MandaeObject
 
     /**
      * @param $array
-     * @return self
+     * @return static
      */
     public static function createFromArray(array $array = [])
     {

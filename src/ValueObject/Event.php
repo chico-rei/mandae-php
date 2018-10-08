@@ -44,7 +44,7 @@ class Event extends MandaeObject
     public static function createFromArray(array $array = [])
     {
         return new self([
-            'date' => !is_null($array['date']) ? Carbon::parse($array['date']) : null,
+            'date' => isset($array['date']) ? Carbon::parse($array['date']) : null,
             'name' => $array['name'] ?? null,
             'description' => $array['description'] ?? null,
         ]);

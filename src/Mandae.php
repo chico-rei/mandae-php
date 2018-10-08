@@ -2,6 +2,7 @@
 
 namespace ChicoRei\Packages\Mandae;
 
+use ChicoRei\Packages\Mandae\Handler\OrderHandler;
 use ChicoRei\Packages\Mandae\Handler\PostalCodeHandler;
 use ChicoRei\Packages\Mandae\Handler\TrackingHandler;
 
@@ -29,21 +30,26 @@ class Mandae
     private $client;
 
     /**
-     * @param array
+     * @var array
      */
     private $defaultOptions = [
         'timeout' => 5.0,
     ];
 
     /**
-     * @param PostalCodeHandler
+     * @var PostalCodeHandler
      */
     private $postalCodeHandler;
 
     /**
-     * @param TrackingHandler
+     * @var TrackingHandler
      */
     private $trackingHandler;
+
+    /**
+     * @var OrderHandler
+     */
+    private $orderHandler;
 
     /**
      * MandaeService constructor.
@@ -92,5 +98,17 @@ class Mandae
         }
 
         return $this->trackingHandler;
+    }
+
+    /**
+     * @return OrderHandler
+     */
+    public function order(): OrderHandler
+    {
+        if (!isset($this->orderHandler)) {
+            $this->orderHandler = new OrderHandler($this->client);
+        }
+
+        return $this->orderHandler;
     }
 }

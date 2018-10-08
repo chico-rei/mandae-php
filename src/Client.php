@@ -3,7 +3,7 @@
 namespace ChicoRei\Packages\Mandae;
 
 use ChicoRei\Packages\Mandae\Exception\MandaeClientException;
-use ChicoRei\Packages\Mandae\Exception\MandaeException;
+use ChicoRei\Packages\Mandae\Exception\MandaeAPIException;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
@@ -39,7 +39,7 @@ class Client
     /**
      * @param IRequest $request
      * @return array
-     * @throws MandaeException
+     * @throws MandaeAPIException
      * @throws MandaeClientException
      */
     public function sendRequest(IRequest $request)
@@ -54,7 +54,7 @@ class Client
 
              if(isset($parsedResponse['error'])) {
                  // Mandae API isn't responding with correct HTTP Status on some ending points
-                 throw new MandaeException($parsedResponse['error']['message'], $parsedResponse['error']['code'], null, $response);
+                 throw new MandaeAPIException($parsedResponse['error']['message'], $parsedResponse['error']['code'], null, $response);
              }
 
              return $parsedResponse;
@@ -63,7 +63,7 @@ class Client
             $message = $response['error']['message'] ?? $exception->getMessage();
             $code = $response['error']['code'] ?? $exception->getCode();
 
-            throw new MandaeException($message, $code, $exception->getRequest(), $exception->getResponse());
+            throw new MandaeAPIException($message, $code, $exception->getRequest(), $exception->getResponse());
         }  catch (GuzzleException | RequestException $exception) {
             throw new MandaeClientException($exception->getMessage(), $exception->getCode());
         }

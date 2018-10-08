@@ -3,10 +3,10 @@
 namespace ChicoRei\Packages\Mandae\Handler;
 
 use ChicoRei\Packages\Mandae\Client;
-use ChicoRei\Packages\Mandae\Request\TrackingGetRequest;
-use ChicoRei\Packages\Mandae\Response\TrackingGetResponse;
+use ChicoRei\Packages\Mandae\Request\OrderAddParcelRequest;
+use ChicoRei\Packages\Mandae\Response\OrderAddParcelResponse;
 
-class TrackingHandler
+class OrderHandler
 {
     /**
      * @var Client
@@ -22,25 +22,25 @@ class TrackingHandler
     }
 
     /**
-     * Get Tracking API
+     * Add Parcel API
      *
-     * @param array|TrackingGetRequest $payload
-     * @return TrackingGetResponse
+     * @param array|OrderAddParcelRequest $payload
+     * @return OrderAddParcelResponse
      * @throws \ChicoRei\Packages\Mandae\Exception\MandaeClientException
      * @throws \ChicoRei\Packages\Mandae\Exception\MandaeAPIException
      */
-    public function get($payload): TrackingGetResponse
+    public function addParcel($payload): OrderAddParcelResponse
     {
         if (is_array($payload)) {
-            $payload = TrackingGetRequest::createFromArray($payload);
+            $payload = OrderAddParcelRequest::createFromArray($payload);
         }
 
-        if (!$payload instanceof TrackingGetRequest) {
+        if (!$payload instanceof OrderAddParcelRequest) {
             throw new \RuntimeException('payload must be an array or an instance of TrackingGetRequest');
         }
 
         $response = $this->client->sendRequest($payload);
 
-        return TrackingGetResponse::createFromArray($response);
+        return OrderAddParcelResponse::createFromArray($response);
     }
 }

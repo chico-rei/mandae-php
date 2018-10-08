@@ -5,7 +5,6 @@ namespace ChicoRei\Packages\Mandae\Handler;
 use ChicoRei\Packages\Mandae\Client;
 use ChicoRei\Packages\Mandae\Request\PostalCodeRatesRequest;
 use ChicoRei\Packages\Mandae\Response\PostalCodeRatesResponse;
-use http\Exception\RuntimeException;
 
 class PostalCodeHandler
 {
@@ -28,7 +27,7 @@ class PostalCodeHandler
      * @param array|PostalCodeRatesResponse $payload
      * @return PostalCodeRatesResponse
      * @throws \ChicoRei\Packages\Mandae\Exception\MandaeClientException
-     * @throws \ChicoRei\Packages\Mandae\Exception\MandaeException
+     * @throws \ChicoRei\Packages\Mandae\Exception\MandaeAPIException
      */
     public function rates($payload): PostalCodeRatesResponse
     {
@@ -37,7 +36,7 @@ class PostalCodeHandler
         }
 
         if (!$payload instanceof PostalCodeRatesRequest) {
-            throw new RuntimeException('payload must be an array or an instance of PostalCodeRatesRequest');
+            throw new \RuntimeException('payload must be an array or an instance of PostalCodeRatesRequest');
         }
 
         $response = $this->client->sendRequest($payload);
