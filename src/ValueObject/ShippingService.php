@@ -7,6 +7,16 @@ use ChicoRei\Packages\Mandae\MandaeObject;
 class ShippingService extends MandaeObject
 {
     /**
+     * @var string
+     */
+    const SHIPPING_SERVICE_ECONOMICO = 'Econômico';
+
+    /**
+     * @var string
+     */
+    const SHIPPING_SERVICE_RAPIDO = 'Rápido';
+
+    /**
      * Name of the Service
      *
      * @var null|string
