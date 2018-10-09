@@ -1,15 +1,24 @@
 language: php
 
-php:
-  - 7.1
-  - 7.2
+dist: trusty
 
-install:
-- composer update
+matrix:
+  include:
+  - php: 7.1
+    env: ANALYSIS='true'
+  - php: 7.1
+    env: COMPOSER_ARGS='--prefer-lowest'
+  - php: 7.2
+  - php: nightly
+  allow_failures:
+  - php: nightly
+
+before_script:
+- composer update $COMPOSER_ARGS
 
 script:
 - mkdir -p build/logs
 - php vendor/bin/phpunit -c phpunit.xml.dist
 
 after_success:
-- travis_retry php vendor/bin/coveralls -v -r /home/travis/build/chico-rei/mandae-php/
+- if [[ "$ANALYSIS" == 'true' ]]; then php vendor/bin/coveralls -v -r /home/travis/build/chico-rei/mandae-php/ ; fi
