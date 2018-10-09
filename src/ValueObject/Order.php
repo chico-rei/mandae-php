@@ -274,7 +274,7 @@ abstract class Order extends MandaeObject
         return [
             'id' => $this->getId(),
             'customerId' => $this->getCustomerId(),
-            'scheduling' => $this->getScheduling() ? $this->getScheduling()->toIso8601String() : null,
+            'scheduling' => $this->getScheduling() ? $this->getScheduling()->toAtomString() : null,  // Atom outputs the correct ISO8601 on any Carbon Version. See: https://github.com/briannesbitt/Carbon/issues/861
             'items' => array_map(function (Item $newItem) {
                 return $newItem->toArray();
             }, $this->getItems() ?? []),

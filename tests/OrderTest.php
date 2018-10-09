@@ -90,7 +90,7 @@ class OrderTest extends TestCase
         ]);
 
         $this->assertEquals('CUSTOMER', $orderAddParcelReq->getCustomerId());
-        $this->assertEquals('2017-06-30T11:00:00-03:00', $orderAddParcelReq->getScheduling()->toIso8601String());
+        $this->assertEquals('2017-06-30T11:00:00-03:00', $orderAddParcelReq->getScheduling()->toAtomString());
         $this->assertEquals(1, count($orderAddParcelReq->getItems()));
         $this->assertEquals('Car', $orderAddParcelReq->getVehicle());
         $this->assertEquals('Chico Rei', $orderAddParcelReq->getSender()->getFullName());
