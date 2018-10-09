@@ -39,4 +39,41 @@ class PostalCodeTest extends TestCase
             $this->assertEquals('Tamanho do campo Cep deve estar entre 8 e 8', $e->getMessage());
         }
     }
+
+    public function testSuccessfulRequest()
+    {
+        $mock = new MockHandler([
+            new Response(200, [], <<<EOT
+                {
+                   "postalCode":"69945000",
+                   "shippingServices":[
+                      {
+                         "name":"Econômico",
+                         "days":20,
+                         "price":63.18
+                      },
+                      {
+                         "name":"Rápido",
+                         "days":12,
+                         "price":81.68
+                      }
+                   ]
+                }
+EOT
+            ),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $mandae = new Mandae('TOKEN', true, ['handler' => $handler]);
+
+        $response = $mandae->postalCode()->rates([
+            'postalCode' => '69945000',
+            'dimensions' => ['height' => 20, 'weight' => 1, 'width' => 20, 'length' => 10,]
+        ]);
+
+        $this->assertEquals('69945000', $response->getPostalCode());
+        $this->assertEquals(2, count($response->getShippingServices()));
+        $this->assertEquals(63.18, $response->getEconomicShipping()->getPrice());
+        $this->assertEquals(81.68, $response->getFastShipping()->getPrice());
+    }
 }

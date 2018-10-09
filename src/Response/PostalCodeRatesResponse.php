@@ -80,6 +80,38 @@ class PostalCodeRatesResponse extends MandaeObject
         return $this;
     }
 
+    /**
+     * Get Economic Shipping Service
+     *
+     * @return ShippingService|null
+     */
+    public function getEconomicShipping(): ?ShippingService
+    {
+        foreach ($this->getShippingServices() as $shippingService) {
+            if ($shippingService->getName() === 'Econômico'){
+                return $shippingService;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Get Fast Shipping Service
+     *
+     * @return ShippingService|null
+     */
+    public function getFastShipping(): ?ShippingService
+    {
+        foreach ($this->getShippingServices() as $shippingService) {
+            if ($shippingService->getName() === 'Rápido'){
+                return $shippingService;
+            }
+        }
+
+        return null;
+    }
+
     public function toArray(): array
     {
         return [
