@@ -68,4 +68,9 @@ class OrderAddParcelRequest extends Order implements IRequest
     {
         return $this->toArray();
     }
+
+    public function toArray(): array
+    {
+        return array_merge(['async' => $this->getAsync()], parent::toArray());
+    }
 }

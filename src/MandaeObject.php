@@ -31,9 +31,7 @@ abstract class MandaeObject
      */
     public static function createFromArray(array $array = [])
     {
-        $class = new static();
-        $class->fill($array);
-        return $class;
+        return new static($array);
     }
 
     /**

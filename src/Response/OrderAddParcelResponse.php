@@ -62,4 +62,9 @@ class OrderAddParcelResponse extends Order
     {
         return !is_null($this->jobId);
     }
+
+    public function toArray(): array
+    {
+        return array_merge(['jobId' => $this->getJobId()], parent::toArray());
+    }
 }

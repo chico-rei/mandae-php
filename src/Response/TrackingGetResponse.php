@@ -46,11 +46,11 @@ class TrackingGetResponse extends MandaeObject
 
     /**
      * @param $array
-     * @return TrackingGetResponse
+     * @return static
      */
     public static function createFromArray(array $array = [])
     {
-        return new self([
+        return new static([
             'trackingCode' => $array['trackingCode'],
             'carrierCode' => $array['carrierCode'],
             'carrierName' => $array['carrierName'],
