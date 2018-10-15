@@ -4,7 +4,7 @@ namespace ChicoRei\Packages\Mandae\Request;
 
 use ChicoRei\Packages\Mandae\IRequest;
 use ChicoRei\Packages\Mandae\MandaeObject;
-use ChicoRei\Packages\Mandae\ValueObject\Dimensions;
+use ChicoRei\Packages\Mandae\Model\Dimensions;
 
 class PostalCodeRatesRequest extends MandaeObject implements IRequest
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ChicoRei\Packages\Mandae\ValueObject;
+namespace ChicoRei\Packages\Mandae\Model;
 
 use Carbon\Carbon;
 use ChicoRei\Packages\Mandae\MandaeObject;
@@ -78,19 +78,10 @@ abstract class Order extends MandaeObject
     public $partnerOrderId;
 
     /**
-     * OrderAddParcelRequest constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
      * @param $array
      * @return static
      */
-    public static function createFromArray(array $array = []): self
+    public static function createFromArray(array $array = [])
     {
         return new static([
             'id' => $array['id'] ?? null,

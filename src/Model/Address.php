@@ -1,6 +1,6 @@
 <?php
 
-namespace ChicoRei\Packages\Mandae\ValueObject;
+namespace ChicoRei\Packages\Mandae\Model;
 
 use ChicoRei\Packages\Mandae\MandaeObject;
 

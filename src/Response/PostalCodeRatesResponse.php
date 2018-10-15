@@ -3,7 +3,7 @@
 namespace ChicoRei\Packages\Mandae\Response;
 
 use ChicoRei\Packages\Mandae\MandaeObject;
-use ChicoRei\Packages\Mandae\ValueObject\ShippingService;
+use ChicoRei\Packages\Mandae\Model\ShippingService;
 
 class PostalCodeRatesResponse extends MandaeObject
 {

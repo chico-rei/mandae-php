@@ -3,7 +3,7 @@
 namespace ChicoRei\Packages\Mandae\Response;
 
 use ChicoRei\Packages\Mandae\MandaeObject;
-use ChicoRei\Packages\Mandae\ValueObject\Event;
+use ChicoRei\Packages\Mandae\Model\Event;
 
 class TrackingGetResponse extends MandaeObject
 {
