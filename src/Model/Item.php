@@ -57,7 +57,7 @@ class Item extends MandaeObject
     /**
      * Partner Item Id
      *
-     * @var null|string[]
+     * @var null|string
      */
     public $partnerItemId;
 
@@ -133,6 +133,7 @@ class Item extends MandaeObject
     public static function createFromArray(array $array = [])
     {
         return new self([
+            'id' => $array['id'] ?? null,
             'recipient' => Recipient::createFromArray($array['recipient'] ?? []),
             'shippingService' => $array['shippingService'] ?? null,
             'valueAddedServices' => $array['valueAddedServices'] ? array_map(function ($valueAddedServices) {
@@ -263,18 +264,18 @@ class Item extends MandaeObject
     }
 
     /**
-     * @return null|string[]
+     * @return null|string
      */
-    public function getPartnerItemId(): ?array
+    public function getPartnerItemId(): ?string
     {
         return $this->partnerItemId;
     }
 
     /**
-     * @param null|string[] $partnerItemId
+     * @param null|string $partnerItemId
      * @return Item
      */
-    public function setPartnerItemId(?array $partnerItemId): Item
+    public function setPartnerItemId(?string $partnerItemId): Item
     {
         $this->partnerItemId = $partnerItemId;
         return $this;

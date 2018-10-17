@@ -45,13 +45,15 @@ class Client
     public function sendRequest(IRequest $request)
     {
         try {
+            $payload = $request->getPayload();
+
             $response = $this->guzzle->request(
                 $request->getMethod(),
                 $request->getPath(),
-                ['json' => $request->getPayload()]);
+                ['json' => $this->cleanPayload($payload)]);
 
              $parsedResponse = $this->handleResponse($response);
-
+             
              if(isset($parsedResponse['error'])) {
                  // Mandae API isn't responding with correct HTTP Status on some ending points
                  throw new MandaeAPIException($parsedResponse['error']['message'], $parsedResponse['error']['code'], null, $response);
@@ -78,5 +80,26 @@ class Client
     private function handleResponse(ResponseInterface $response): ?array
     {
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * Remove all null values from array
+     *
+     * @param array|null $payload
+     * @return array|null
+     */
+    private function cleanPayload(?array &$payload): ?array
+    {
+        if (is_null($payload))
+            return null;
+
+        foreach ($payload as $key => &$value) {
+            if (is_null($value))
+                unset($payload[$key]);
+            else if (is_array($value))
+                $this->cleanPayload($value);
+        }
+
+        return $payload;
     }
 }
