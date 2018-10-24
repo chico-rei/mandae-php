@@ -7,6 +7,13 @@ use ChicoRei\Packages\Mandae\MandaeObject;
 class Dimensions extends MandaeObject
 {
     /**
+     * Dimension type
+     *
+     * @var null|string
+     */
+    public $type;
+
+    /**
      * Height in centimeters
      *
      * @var null|float
@@ -41,6 +48,24 @@ class Dimensions extends MandaeObject
     public function __construct(array $values = [])
     {
         parent::__construct($values);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param null|string $type
+     * @return Dimensions
+     */
+    public function setType(?string $type): Dimensions
+    {
+        $this->type = $type;
+        return $this;
     }
 
     /**
@@ -118,6 +143,7 @@ class Dimensions extends MandaeObject
     public function toArray(): array
     {
         return [
+            'type' => $this->getType(),
             'height' => $this->getHeight(),
             'width' => $this->getWidth(),
             'length' => $this->getLength(),
