@@ -42,6 +42,20 @@ class Dimensions extends MandaeObject
     public $weight;
 
     /**
+     * Volume in cubic centimetre
+     *
+     * @var null|float
+     */
+    public $volume;
+
+    /**
+     * Diameter in centimeters
+     *
+     * @var null|float
+     */
+    public $diameter;
+
+    /**
      * Dimensions constructor.
      * @param array $values
      */
@@ -140,6 +154,42 @@ class Dimensions extends MandaeObject
         return $this;
     }
 
+    /**
+     * @return float|null
+     */
+    public function getVolume(): ?float
+    {
+        return $this->volume;
+    }
+
+    /**
+     * @param float|null $volume
+     * @return Dimensions
+     */
+    public function setVolume(?float $volume): Dimensions
+    {
+        $this->volume = $volume;
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getDiameter(): ?float
+    {
+        return $this->diameter;
+    }
+
+    /**
+     * @param float|null $diameter
+     * @return Dimensions
+     */
+    public function setDiameter(?float $diameter): Dimensions
+    {
+        $this->diameter = $diameter;
+        return $this;
+    }
+
     public function toArray(): array
     {
         return [
@@ -148,6 +198,8 @@ class Dimensions extends MandaeObject
             'width' => $this->getWidth(),
             'length' => $this->getLength(),
             'weight' => $this->getWeight(),
+            'volume' => $this->getVolume(),
+            'diameter' => $this->getDiameter(),
         ];
     }
 }
