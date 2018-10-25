@@ -12,7 +12,7 @@ abstract class Order extends MandaeObject
      */
     const VEHICLE_CAR = 'Car';
     const VEHICLE_MOTORCYCLE = 'Motorcyle';
-    const VEHICLE_DROPOFF = 'Dropoff';
+    const VEHICLE_DROPOFF = 'DropOff';
 
     /**
      * Id
