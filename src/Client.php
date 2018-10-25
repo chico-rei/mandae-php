@@ -50,23 +50,34 @@ class Client
             $response = $this->guzzle->request(
                 $request->getMethod(),
                 $request->getPath(),
-                ['json' => $this->cleanPayload($payload)]);
+                ['json' => Util::cleanArray($payload)]
+            );
 
-             $parsedResponse = $this->handleResponse($response);
-             
-             if(isset($parsedResponse['error'])) {
-                 // Mandae API isn't responding with correct HTTP Status on some ending points
-                 throw new MandaeAPIException($parsedResponse['error']['message'], $parsedResponse['error']['code'], null, $response);
-             }
+            $parsedResponse = $this->handleResponse($response);
 
-             return $parsedResponse;
+            if (isset($parsedResponse['error'])) {
+                // Mandae API isn't responding with correct HTTP Status on some ending points
+                throw new MandaeAPIException(
+                    $parsedResponse['error']['message'],
+                    $parsedResponse['error']['code'],
+                    null,
+                    $response
+                );
+            }
+
+            return $parsedResponse;
         } catch (ServerException | ClientException $exception) {
             $response = $this->handleResponse($exception->getResponse());
             $message = $response['error']['message'] ?? $exception->getMessage();
             $code = $response['error']['code'] ?? $exception->getCode();
 
-            throw new MandaeAPIException($message, $code, $exception->getRequest(), $exception->getResponse());
-        }  catch (GuzzleException | RequestException $exception) {
+            throw new MandaeAPIException(
+                $message,
+                $code,
+                $exception->getRequest(),
+                $exception->getResponse()
+            );
+        } catch (GuzzleException | RequestException $exception) {
             throw new MandaeClientException($exception->getMessage(), $exception->getCode());
         }
     }
@@ -80,26 +91,5 @@ class Client
     private function handleResponse(ResponseInterface $response): ?array
     {
         return json_decode($response->getBody()->getContents(), true);
-    }
-
-    /**
-     * Remove all null values from array
-     *
-     * @param array|null $payload
-     * @return array|null
-     */
-    private function cleanPayload(?array &$payload): ?array
-    {
-        if (is_null($payload))
-            return null;
-
-        foreach ($payload as $key => &$value) {
-            if (is_null($value))
-                unset($payload[$key]);
-            else if (is_array($value))
-                $this->cleanPayload($value);
-        }
-
-        return $payload;
     }
 }

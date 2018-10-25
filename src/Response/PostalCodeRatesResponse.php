@@ -88,7 +88,7 @@ class PostalCodeRatesResponse extends MandaeObject
     public function getEconomicShipping(): ?ShippingService
     {
         foreach ($this->getShippingServices() as $shippingService) {
-            if ($shippingService->getName() === ShippingService::SHIPPING_SERVICE_ECONOMICO){
+            if ($shippingService->getName() === ShippingService::SHIPPING_SERVICE_ECONOMICO) {
                 return $shippingService;
             }
         }
@@ -104,7 +104,7 @@ class PostalCodeRatesResponse extends MandaeObject
     public function getFastShipping(): ?ShippingService
     {
         foreach ($this->getShippingServices() as $shippingService) {
-            if ($shippingService->getName() === ShippingService::SHIPPING_SERVICE_RAPIDO){
+            if ($shippingService->getName() === ShippingService::SHIPPING_SERVICE_RAPIDO) {
                 return $shippingService;
             }
         }

@@ -1,5 +1,7 @@
 <?php
 
+namespace ChicoRei\Packages\Mandae\Tests;
+
 use ChicoRei\Packages\Mandae\Request\OrderAddParcelRequest;
 use PHPUnit\Framework\TestCase;
 

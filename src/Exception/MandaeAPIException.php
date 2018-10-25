@@ -24,8 +24,12 @@ class MandaeAPIException extends \Exception
      * @param Request|null $request
      * @param Response|null $response
      */
-    public function __construct(string $message = "", string $code = "0", ?Request $request = null, ?Response $response = null)
-    {
+    public function __construct(
+        string $message = "",
+        string $code = "0",
+        ?Request $request = null,
+        ?Response $response = null
+    ) {
         parent::__construct($message);
 
         $this->code = $code;

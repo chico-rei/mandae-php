@@ -20,7 +20,7 @@ Requires PHP 7.1 or newer.
 ## Testing
 
 ```bash
-phpunit
+$ composer test
 ```
 
 ## License

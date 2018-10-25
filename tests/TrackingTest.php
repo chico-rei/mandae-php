@@ -1,5 +1,7 @@
 <?php
 
+namespace ChicoRei\Packages\Mandae\Tests;
+
 use ChicoRei\Packages\Mandae\Mandae;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
@@ -11,6 +13,7 @@ class TrackingTest extends TestCase
     public function testSuccess()
     {
         $mock = new MockHandler([
+            // @codingStandardsIgnoreStart
             new Response(200, [], <<<EOT
                 {
                    "trackingCode":"23A6BKMQ313M0",
@@ -32,6 +35,7 @@ class TrackingTest extends TestCase
 EOT
             ),
         ]);
+        // @codingStandardsIgnoreEnd
 
         $handler = HandlerStack::create($mock);
         $mandae = new Mandae('TOKEN', true, ['handler' => $handler]);

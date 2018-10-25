@@ -1,5 +1,7 @@
 <?php
 
+namespace ChicoRei\Packages\Mandae\Tests;
+
 use ChicoRei\Packages\Mandae\Mandae;
 use ChicoRei\Packages\Mandae\Exception\MandaeAPIException;
 use PHPUnit\Framework\TestCase;

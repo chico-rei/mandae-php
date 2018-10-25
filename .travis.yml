@@ -19,6 +19,7 @@ before_script:
 script:
 - mkdir -p build/logs
 - php vendor/bin/phpunit -c phpunit.xml.dist
+- if [[ "$ANALYSIS" == 'true' ]]; then php vendor/bin/phpcs ; fi
 
 after_success:
 - if [[ "$ANALYSIS" == 'true' ]]; then php vendor/bin/coveralls -v -r /home/travis/build/chico-rei/mandae-php/ ; fi

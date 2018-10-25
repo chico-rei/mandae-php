@@ -1,5 +1,7 @@
 <?php
 
+namespace ChicoRei\Packages\Mandae\Tests;
+
 use ChicoRei\Packages\Mandae\Mandae;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
