@@ -19,6 +19,11 @@ class Client
     private $guzzle;
 
     /**
+     * @var ResponseInterface
+     */
+    private $lastSuccessfulResponse;
+
+    /**
      * @param $apiToken
      * @param $sandbox
      * @param array $options
@@ -47,13 +52,13 @@ class Client
         try {
             $payload = $request->getPayload();
 
-            $response = $this->guzzle->request(
+            $this->lastSuccessfulResponse = $this->guzzle->request(
                 $request->getMethod(),
                 $request->getPath(),
                 ['json' => Util::cleanArray($payload)]
             );
 
-            $parsedResponse = $this->handleResponse($response);
+            $parsedResponse = $this->handleResponse($this->lastSuccessfulResponse);
 
             if (isset($parsedResponse['error'])) {
                 // Mandae API isn't responding with correct HTTP Status on some ending points
@@ -61,7 +66,7 @@ class Client
                     $parsedResponse['error']['message'],
                     $parsedResponse['error']['code'],
                     null,
-                    $response
+                    $this->lastSuccessfulResponse
                 );
             }
 
@@ -83,13 +88,23 @@ class Client
     }
 
     /**
-     * Handle the Response
+     * Decode the Response
      *
      * @param ResponseInterface $response
      * @return null|array
      */
-    private function handleResponse(ResponseInterface $response): ?array
+    public function handleResponse(ResponseInterface $response): ?array
     {
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * Get the last successfull response from API
+     *
+     * @return ResponseInterface|null
+     */
+    public function getLastSuccessfulResponse(): ?ResponseInterface
+    {
+        return $this->lastSuccessfulResponse;
     }
 }

@@ -36,7 +36,7 @@ class PostalCodeHandler
         }
 
         if (!$payload instanceof PostalCodeRatesRequest) {
-            throw new \RuntimeException('payload must be an array or an instance of PostalCodeRatesRequest');
+            throw new \RuntimeException('Payload must be an array or an instance of PostalCodeRatesRequest');
         }
 
         $response = $this->client->sendRequest($payload);

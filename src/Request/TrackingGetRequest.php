@@ -59,7 +59,7 @@ class TrackingGetRequest extends MandaeObject implements IRequest
 
     public function getPath(): string
     {
-        return sprintf('trackings/%s', $this->trackingCode);
+        return sprintf('trackings/%s', $this->getTrackingCode());
     }
 
     public function getPayload(): ?array

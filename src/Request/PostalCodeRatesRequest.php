@@ -112,7 +112,7 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
 
     public function getPath(): string
     {
-        return sprintf('postalcodes/%s/rates', $this->postalCode);
+        return sprintf('postalcodes/%s/rates', $this->getPostalCode());
     }
 
     public function getPayload(): ?array

@@ -36,7 +36,7 @@ class TrackingHandler
         }
 
         if (!$payload instanceof TrackingGetRequest) {
-            throw new \RuntimeException('payload must be an array or an instance of TrackingGetRequest');
+            throw new \RuntimeException('Payload must be an array or an instance of TrackingGetRequest');
         }
 
         $response = $this->client->sendRequest($payload);
