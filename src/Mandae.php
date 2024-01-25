@@ -13,43 +13,43 @@ class Mandae
      *
      * @var string
      */
-    const API_URL = "https://api.mandae.com.br/v2/";
+    const API_URL = "https://api.mandae.com.br/";
 
     /**
      * Mandae Sandbox API Url
      *
      * @var string
      */
-    const API_SANDBOX_URL = "https://sandbox.api.mandae.com.br/v2/";
+    const API_SANDBOX_URL = "https://sandbox.api.mandae.com.br/";
 
     /**
      * Mandae HTTP Client
      *
      * @var Client
      */
-    private $client;
+    private Client $client;
 
     /**
      * @var array
      */
-    private $defaultOptions = [
-        'timeout' => 5.0,
+    private array $defaultOptions = [
+        'timeout' => 15.0,
     ];
 
     /**
      * @var PostalCodeHandler
      */
-    private $postalCodeHandler;
+    private PostalCodeHandler $postalCodeHandler;
 
     /**
      * @var TrackingHandler
      */
-    private $trackingHandler;
+    private TrackingHandler $trackingHandler;
 
     /**
      * @var OrderHandler
      */
-    private $orderHandler;
+    private OrderHandler $orderHandler;
 
     /**
      * MandaeService constructor.
@@ -57,9 +57,9 @@ class Mandae
      * @param bool $sandbox Use sandbox API
      * @param array $options Guzzle options except base_uri, http_errors and headers
      */
-    public function __construct($apiToken, $sandbox = false, array $options = [])
+    public function __construct(string $apiToken, bool $sandbox = false, array $options = [])
     {
-        if (!isset($apiToken) || empty($apiToken)) {
+        if (empty($apiToken)) {
             throw new \InvalidArgumentException('API Token can\'t be null or empty!');
         }
 

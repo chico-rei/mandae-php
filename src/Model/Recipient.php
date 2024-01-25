@@ -9,23 +9,30 @@ class Recipient extends MandaeObject
     /**
      * Full name
      *
-     * @var null|string
+     * @var string
      */
     public $fullName;
 
     /**
      * Address
      *
-     * @var null|Address
+     * @var Address
      */
     public $address;
 
     /**
      * Document (CPF or CNPJ)
      *
-     * @var null|string
+     * @var string
      */
     public $document;
+
+    /**
+     * Email
+     *
+     * @var string
+     */
+    public $email;
 
     /**
      * Phone
@@ -35,38 +42,7 @@ class Recipient extends MandaeObject
     public $phone;
 
     /**
-     * Email
-     *
-     * @var null|string
-     */
-    public $email;
-
-    /**
-     * Recipient constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return Recipient
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'fullName' => $array['fullName'] ?? null,
-            'address' => Address::createFromArray($array['address'] ?? []),
-            'document' => $array['document'] ?? null,
-            'phone' => $array['phone'] ?? null,
-            'email' => $array['email'] ?? null,
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string
      */
     public function getFullName(): ?string
     {
@@ -74,17 +50,17 @@ class Recipient extends MandaeObject
     }
 
     /**
-     * @param null|string $fullName
+     * @param string $fullName
      * @return Recipient
      */
-    public function setFullName(?string $fullName): Recipient
+    public function setFullName(string $fullName): Recipient
     {
         $this->fullName = $fullName;
         return $this;
     }
 
     /**
-     * @return Address|null
+     * @return Address
      */
     public function getAddress(): ?Address
     {
@@ -92,17 +68,17 @@ class Recipient extends MandaeObject
     }
 
     /**
-     * @param Address|null $address
+     * @param Address|array $address
      * @return Recipient
      */
-    public function setAddress(?Address $address): Recipient
+    public function setAddress($address): Recipient
     {
-        $this->address = $address;
+        $this->address = Address::create($address);
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getDocument(): ?string
     {
@@ -110,17 +86,35 @@ class Recipient extends MandaeObject
     }
 
     /**
-     * @param null|string $document
+     * @param string $document
      * @return Recipient
      */
-    public function setDocument(?string $document): Recipient
+    public function setDocument(string $document): Recipient
     {
         $this->document = $document;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return Recipient
+     */
+    public function setEmail(string $email): Recipient
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string|null
      */
     public function getPhone(): ?string
     {
@@ -128,7 +122,7 @@ class Recipient extends MandaeObject
     }
 
     /**
-     * @param null|string $phone
+     * @param string|null $phone
      * @return Recipient
      */
     public function setPhone(?string $phone): Recipient
@@ -138,31 +132,16 @@ class Recipient extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return array
      */
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param null|string $email
-     * @return Recipient
-     */
-    public function setEmail(?string $email): Recipient
-    {
-        $this->email = $email;
-        return $this;
-    }
-
     public function toArray(): array
     {
         return [
             'fullName' => $this->getFullName(),
             'address' => $this->getAddress() ? $this->getAddress()->toArray() : null,
             'document' => $this->getDocument(),
-            'phone' => $this->getPhone(),
             'email' => $this->getEmail(),
+            'phone' => $this->getPhone(),
         ];
     }
 }

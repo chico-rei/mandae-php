@@ -7,13 +7,6 @@ use ChicoRei\Packages\Mandae\MandaeObject;
 class Dimensions extends MandaeObject
 {
     /**
-     * Dimension type
-     *
-     * @var null|string
-     */
-    public $type;
-
-    /**
      * Height in centimeters
      *
      * @var null|float
@@ -41,50 +34,6 @@ class Dimensions extends MandaeObject
      */
     public $weight;
 
-    /**
-     * Volume in cubic centimetre
-     *
-     * @var null|float
-     */
-    public $volume;
-
-    /**
-     * Diameter in centimeters
-     *
-     * @var null|float
-     */
-    public $diameter;
-
-    /**
-     * Dimensions constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param null|string $type
-     * @return Dimensions
-     */
-    public function setType(?string $type): Dimensions
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * @return float|null
-     */
     public function getHeight(): ?float
     {
         return $this->height;
@@ -92,7 +41,7 @@ class Dimensions extends MandaeObject
 
     /**
      * @param float|null $height
-     * @return Dimensions
+     * @return $this
      */
     public function setHeight(?float $height): Dimensions
     {
@@ -110,7 +59,7 @@ class Dimensions extends MandaeObject
 
     /**
      * @param float|null $width
-     * @return Dimensions
+     * @return $this
      */
     public function setWidth(?float $width): Dimensions
     {
@@ -128,7 +77,7 @@ class Dimensions extends MandaeObject
 
     /**
      * @param float|null $length
-     * @return Dimensions
+     * @return $this
      */
     public function setLength(?float $length): Dimensions
     {
@@ -146,7 +95,7 @@ class Dimensions extends MandaeObject
 
     /**
      * @param float|null $weight
-     * @return Dimensions
+     * @return $this
      */
     public function setWeight(?float $weight): Dimensions
     {
@@ -155,51 +104,15 @@ class Dimensions extends MandaeObject
     }
 
     /**
-     * @return float|null
+     * @return array
      */
-    public function getVolume(): ?float
-    {
-        return $this->volume;
-    }
-
-    /**
-     * @param float|null $volume
-     * @return Dimensions
-     */
-    public function setVolume(?float $volume): Dimensions
-    {
-        $this->volume = $volume;
-        return $this;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getDiameter(): ?float
-    {
-        return $this->diameter;
-    }
-
-    /**
-     * @param float|null $diameter
-     * @return Dimensions
-     */
-    public function setDiameter(?float $diameter): Dimensions
-    {
-        $this->diameter = $diameter;
-        return $this;
-    }
-
     public function toArray(): array
     {
         return [
-            'type' => $this->getType(),
             'height' => $this->getHeight(),
             'width' => $this->getWidth(),
             'length' => $this->getLength(),
             'weight' => $this->getWeight(),
-            'volume' => $this->getVolume(),
-            'diameter' => $this->getDiameter(),
         ];
     }
 }

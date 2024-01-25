@@ -2,6 +2,8 @@
 
 namespace ChicoRei\Packages\Mandae;
 
+use InvalidArgumentException;
+
 abstract class MandaeObject
 {
     /**
@@ -14,24 +16,37 @@ abstract class MandaeObject
     }
 
     /**
-     * @param $array
+     * @param array $array
+     * @return static
      */
     public function fill(array $array = [])
     {
         foreach ($array as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
+            $setter = 'set'.ucfirst($key);
+
+            if (method_exists($this, $setter)) {
+                $this->$setter($value);
             }
         }
+
+        return $this;
     }
 
     /**
-     * @param $array
+     * @param array|static|null $data
      * @return static
      */
-    public static function createFromArray(array $array = [])
+    public static function create($data = [])
     {
-        return new static($array);
+        if ($data instanceof static || is_null($data)) {
+            return $data;
+        }
+
+        if (! is_array($data)) {
+            throw new InvalidArgumentException('create() argument must be an array');
+        }
+
+        return new static($data);
     }
 
     /**

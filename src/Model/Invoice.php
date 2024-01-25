@@ -9,40 +9,26 @@ class Invoice extends MandaeObject
     /**
      * Id
      *
-     * @var null|string
+     * @var string
      */
     public $id;
 
     /**
      * Key
      *
-     * @var null|string
+     * @var string
      */
     public $key;
 
     /**
-     * Invoice constructor.
-     * @param array $values
+     * Type
+     *
+     * @var string
      */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
+    public $type;
 
     /**
-     * @param $array
-     * @return Invoice
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'id' => $array['id'] ?? null,
-            'key' => $array['key'] ?? null,
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string
      */
     public function getId(): ?string
     {
@@ -50,17 +36,17 @@ class Invoice extends MandaeObject
     }
 
     /**
-     * @param null|string $id
+     * @param string $id
      * @return Invoice
      */
-    public function setId(?string $id): Invoice
+    public function setId(string $id): Invoice
     {
         $this->id = $id;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getKey(): ?string
     {
@@ -68,20 +54,42 @@ class Invoice extends MandaeObject
     }
 
     /**
-     * @param null|string $key
+     * @param string $key
      * @return Invoice
      */
-    public function setKey(?string $key): Invoice
+    public function setKey(string $key): Invoice
     {
         $this->key = $key;
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return Invoice
+     */
+    public function setType(string $type): Invoice
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [
             'id' => $this->getId(),
             'key' => $this->getKey(),
+            'type' => $this->getType(),
         ];
     }
 }

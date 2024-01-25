@@ -10,12 +10,16 @@ $mandae = new Mandae('TOKEN', true);
 
 try {
     $response = $mandae->postalCode()->rates([
-        'postalCode' => '36016450',
-        'dimensions' => [
-            'height' => 20,
-            'weight' => 1,
-            'width' => 20,
-            'length' => 10,
+        'postalCode' => '36774032',
+        'items' => [
+            [
+                'height' => 15,
+                'weight' => 1,
+                'width' => 15,
+                'length' => 10,
+                'quantity' => 1,
+                'declaredValue' => 50.3,
+            ]
         ]
     ]);
 

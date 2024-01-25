@@ -10,16 +10,20 @@ use \ChicoRei\Packages\Mandae\Request\OrderAddParcelRequest;
 $mandae = new Mandae('TOKEN', true);
 
 try {
-    $orderAddParcel = OrderAddParcelRequest::createFromArray([
-        "customerId" => "CUSTOMER",
-        "scheduling" => "2017-06-30T11:00:00-03:00",
+    $orderAddParcel = OrderAddParcelRequest::create([
+        "customerId" => "CUSTOMER_ID",
         "items" => [
             [
-                "dimensions" => [
-                    "height" => 10,
-                    "width" => 10,
-                    "length" => 10,
-                    "weight" => 501
+                "volumes" => [
+                    [
+                        "volumeId" => "CNRMCABCDE987",
+                        "dimensions" => [
+                            "height" => 0,
+                            "width" => 0,
+                            "length" => 0,
+                            "weight" => 0
+                        ],
+                    ]
                 ],
                 "skus" => [
                     [
@@ -27,7 +31,6 @@ try {
                         "description" => "Bermuda SKU Variação 1 Azul",
                         "ean" => "SKUVR1",
                         "price" => 46.51,
-                        "freight" => 1.50,
                         "quantity" => 1
                     ],
                     [
@@ -35,36 +38,50 @@ try {
                         "description" => "Camisa SKU Variação 2 Vermelha",
                         "ean" => "SKUVR2",
                         "price" => 100.00,
-                        "freight" => 1.50,
                         "quantity" => 1
                     ]
                 ],
                 "invoice" => [
-                    "id" => "11111",
-                    "key" => "9999999999999999999999999999999999999"
+                    "id" => "123456",
+                    "key" => "12345678901234567890123456789012345678901234",
+                    "type" => "NFe",
                 ],
-                "trackingId" => "CHRI123456",
+                "trackingId" => "CNRMC123459956",
+                "partnerItemId" => "44948w4q9d849w8q4d",
                 "observation" => "Item frágil",
                 "recipient" => [
                     "fullName" => "João Destinatário",
-                    "phone" => "(11)91111-1111",
+                    "phone" => "11911111111",
                     "email" => "exemplo-contato@mandae.com.br",
+                    "document" => "70949559016",
                     "address" => [
                         "postalCode" => "05305070",
                         "street" => "Rua Padre Meliton Vigueira Penillos",
                         "number" => "132",
                         "neighborhood" => "Vila Leopoldina",
+                        "addressLine2" => "Apto 255",
                         "city" => "São Paulo",
                         "state" => "SP",
                         "country" => "BR",
                         "reference" => "Próximo a estação CPTM Vila Leopoldina"
                     ]
                 ],
-                "shippingService" => "Economico",
-                "qrCodes" => [
-                    "AAA098",
-                    "AAA099"
+                "sender" => [
+                    "fullName" => "Chico Rei",
+                    "phone" => "11911111111",
+                    "email" => "exemplo-contato@chicorei.com.br",
+                    "document" => "09148763000159",
+                    "address" => [
+                        "postalCode" => "36038090",
+                        "street" => "Rua Jorge Fayer",
+                        "number" => "55",
+                        "neighborhood" => "Bairro Santos Dummont",
+                        "city" => "Juiz de Fora",
+                        "state" => "MG",
+                        "country" => "BR"
+                    ]
                 ],
+                "shippingService" => "Econômico",
                 "valueAddedServices" => [
                     [
                         "name" => "ValorDeclarado",
@@ -72,24 +89,12 @@ try {
                     ]
                 ],
                 "channel" => "ecommerce",
-                "store" => "Sample Store",
+                "store" => "Chico Rei",
                 "totalValue" => 42.0,
                 "totalFreight" => 3.14
             ]
         ],
-        "sender" => [
-            "fullName" => "Chico Rei",
-            "address" => [
-                "postalCode" => "36038090",
-                "street" => "Rua Jorge Fayer",
-                "number" => "55",
-                "neighborhood" => "Bairro Santos Dummont",
-                "city" => "Juiz de Fora",
-                "state" => "MG",
-                "country" => "BR"
-            ]
-        ],
-        "vehicle" => "Car"
+        "observation" => "A"
     ]);
 
     $response = $mandae->order()->addParcel($orderAddParcel);

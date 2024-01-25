@@ -8,11 +8,26 @@ use ChicoRei\Packages\Mandae\MandaeObject;
 class Event extends MandaeObject
 {
     /**
+     * Id
+     *
+     * @var null|string
+     */
+    public $id;
+
+
+    /**
      * Date of the Event
      *
      * @var null|Carbon
      */
     public $date;
+
+    /**
+     * Timestamp of the Event
+     *
+     * @var null|Carbon
+     */
+    public $timestamp;
 
     /**
      * Name of the Event
@@ -29,25 +44,21 @@ class Event extends MandaeObject
     public $description;
 
     /**
-     * Event constructor.
-     * @param array $values
+     * @return string|null
      */
-    public function __construct(array $values = [])
+    public function getId(): ?string
     {
-        parent::__construct($values);
+        return $this->id;
     }
 
     /**
-     * @param $array
+     * @param string|null $id
      * @return Event
      */
-    public static function createFromArray(array $array = [])
+    public function setId(?string $id): Event
     {
-        return new self([
-            'date' => isset($array['date']) ? Carbon::parse($array['date']) : null,
-            'name' => $array['name'] ?? null,
-            'description' => $array['description'] ?? null,
-        ]);
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -59,17 +70,36 @@ class Event extends MandaeObject
     }
 
     /**
-     * @param Carbon|null $date
+     * @param Carbon|string $date
      * @return Event
      */
-    public function setDate(?Carbon $date): Event
+    public function setDate($date): Event
     {
-        $this->date = $date;
+        $this->date = Carbon::parse($date);
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return Carbon|null
+     */
+    public function getTimestamp(): ?Carbon
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * @param Carbon|string $timestamp
+     * @return Event
+     */
+    public function setTimestamp($timestamp): Event
+    {
+        $this->timestamp = $timestamp instanceof Carbon
+            ? $timestamp : Carbon::createFromFormat("Y-m-d\TH:i:s", $timestamp);
+        return $this;
+    }
+
+    /**
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -77,7 +107,7 @@ class Event extends MandaeObject
     }
 
     /**
-     * @param null|string $name
+     * @param string|null $name
      * @return Event
      */
     public function setName(?string $name): Event
@@ -87,7 +117,7 @@ class Event extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -95,7 +125,7 @@ class Event extends MandaeObject
     }
 
     /**
-     * @param null|string $description
+     * @param string|null $description
      * @return Event
      */
     public function setDescription(?string $description): Event
@@ -107,7 +137,9 @@ class Event extends MandaeObject
     public function toArray(): array
     {
         return [
-            'date' => $this->getDate() ? (string)$this->getDate() : null,
+            'id' => $this->getId(),
+            'date' => $this->getDate() ? $this->getDate()->format("Y-m-d H:i") : null,
+            'timestamp' => $this->getTimestamp() ? $this->getTimestamp()->toDateTimeLocalString() : null,
             'name' => $this->getName(),
             'description' => $this->getDescription(),
         ];

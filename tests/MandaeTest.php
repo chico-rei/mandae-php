@@ -17,7 +17,7 @@ class MandaeTest extends TestCase
      */
     public function testMandaeWithouToken()
     {
-        $mandae = new Mandae(null);
+        $mandae = new Mandae('');
     }
 
 

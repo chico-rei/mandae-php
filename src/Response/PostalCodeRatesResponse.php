@@ -12,37 +12,14 @@ class PostalCodeRatesResponse extends MandaeObject
      *
      * @var string
      */
-    public $postalCode;
+    public ?string $postalCode;
 
     /**
      * Available Shipping Services
      *
      * @var ShippingService[]
      */
-    public $shippingServices;
-
-    /**
-     * PostalCodeRatesResponse constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return PostalCodeRatesResponse
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'postalCode' => $array['postalCode'],
-            'shippingServices' => array_map(function ($shipping) {
-                return ShippingService::createFromArray($shipping);
-            }, $array['shippingServices'] ?? []),
-        ]);
-    }
+    public array $shippingServices = [];
 
     /**
      * @return string
@@ -63,20 +40,23 @@ class PostalCodeRatesResponse extends MandaeObject
     }
 
     /**
-     * @return ShippingService[]
+     * @return array
      */
-    public function getShippingServices(): array
+    public function getShippingServices(): ?array
     {
         return $this->shippingServices;
     }
 
     /**
-     * @param ShippingService[] $shippingServices
+     * @param array $shippingServices
      * @return PostalCodeRatesResponse
      */
     public function setShippingServices(array $shippingServices): PostalCodeRatesResponse
     {
-        $this->shippingServices = $shippingServices;
+        $this->shippingServices = array_map(function ($shippingService) {
+            return ShippingService::create($shippingService);
+        }, $shippingServices);
+
         return $this;
     }
 

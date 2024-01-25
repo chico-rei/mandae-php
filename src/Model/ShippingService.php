@@ -38,16 +38,7 @@ class ShippingService extends MandaeObject
     public $price;
 
     /**
-     * ShippingService constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -55,7 +46,7 @@ class ShippingService extends MandaeObject
     }
 
     /**
-     * @param null|string $name
+     * @param string|null $name
      * @return ShippingService
      */
     public function setName(?string $name): ShippingService
@@ -67,7 +58,7 @@ class ShippingService extends MandaeObject
     /**
      * @return int|null
      */
-    public function getDays(): int
+    public function getDays(): ?int
     {
         return $this->days;
     }
@@ -76,7 +67,7 @@ class ShippingService extends MandaeObject
      * @param int|null $days
      * @return ShippingService
      */
-    public function setDays(int $days): ShippingService
+    public function setDays(?int $days): ShippingService
     {
         $this->days = $days;
         return $this;
@@ -100,6 +91,9 @@ class ShippingService extends MandaeObject
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [

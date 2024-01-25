@@ -3,6 +3,8 @@
 namespace ChicoRei\Packages\Mandae\Handler;
 
 use ChicoRei\Packages\Mandae\Client;
+use ChicoRei\Packages\Mandae\Exception\MandaeAPIException;
+use ChicoRei\Packages\Mandae\Exception\MandaeClientException;
 use ChicoRei\Packages\Mandae\Request\TrackingGetRequest;
 use ChicoRei\Packages\Mandae\Response\TrackingGetResponse;
 
@@ -11,7 +13,7 @@ class TrackingHandler
     /**
      * @var Client
      */
-    private $client;
+    private Client $client;
 
     /**
      * @param Client $client
@@ -26,13 +28,13 @@ class TrackingHandler
      *
      * @param array|TrackingGetRequest $payload
      * @return TrackingGetResponse
-     * @throws \ChicoRei\Packages\Mandae\Exception\MandaeClientException
-     * @throws \ChicoRei\Packages\Mandae\Exception\MandaeAPIException
+     * @throws MandaeClientException
+     * @throws MandaeAPIException
      */
     public function get($payload): TrackingGetResponse
     {
         if (is_array($payload)) {
-            $payload = TrackingGetRequest::createFromArray($payload);
+            $payload = TrackingGetRequest::create($payload);
         }
 
         if (!$payload instanceof TrackingGetRequest) {
@@ -41,6 +43,6 @@ class TrackingHandler
 
         $response = $this->client->sendRequest($payload);
 
-        return TrackingGetResponse::createFromArray($response);
+        return TrackingGetResponse::create($response);
     }
 }

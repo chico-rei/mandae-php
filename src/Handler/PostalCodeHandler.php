@@ -3,6 +3,8 @@
 namespace ChicoRei\Packages\Mandae\Handler;
 
 use ChicoRei\Packages\Mandae\Client;
+use ChicoRei\Packages\Mandae\Exception\MandaeAPIException;
+use ChicoRei\Packages\Mandae\Exception\MandaeClientException;
 use ChicoRei\Packages\Mandae\Request\PostalCodeRatesRequest;
 use ChicoRei\Packages\Mandae\Response\PostalCodeRatesResponse;
 
@@ -11,7 +13,7 @@ class PostalCodeHandler
     /**
      * @var Client
      */
-    private $client;
+    private Client $client;
 
     /**
      * @param Client $client
@@ -26,13 +28,13 @@ class PostalCodeHandler
      *
      * @param array|PostalCodeRatesResponse $payload
      * @return PostalCodeRatesResponse
-     * @throws \ChicoRei\Packages\Mandae\Exception\MandaeClientException
-     * @throws \ChicoRei\Packages\Mandae\Exception\MandaeAPIException
+     * @throws MandaeClientException
+     * @throws MandaeAPIException
      */
     public function rates($payload): PostalCodeRatesResponse
     {
         if (is_array($payload)) {
-            $payload = PostalCodeRatesRequest::createFromArray($payload);
+            $payload = PostalCodeRatesRequest::create($payload);
         }
 
         if (!$payload instanceof PostalCodeRatesRequest) {
@@ -41,6 +43,6 @@ class PostalCodeHandler
 
         $response = $this->client->sendRequest($payload);
 
-        return PostalCodeRatesResponse::createFromArray($response);
+        return PostalCodeRatesResponse::create($response['data']);
     }
 }

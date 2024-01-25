@@ -9,7 +9,7 @@ class ValueAddedService extends MandaeObject
     /**
      * Name
      *
-     * @var null|string
+     * @var string
      */
     public $name;
 
@@ -21,28 +21,7 @@ class ValueAddedService extends MandaeObject
     public $value;
 
     /**
-     * ValueAddedService constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return ValueAddedService
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'name' => $array['name'] ?? null,
-            'value' => $array['value'] ?? null,
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string
      */
     public function getName(): ?string
     {
@@ -50,10 +29,10 @@ class ValueAddedService extends MandaeObject
     }
 
     /**
-     * @param null|string $name
+     * @param string $name
      * @return ValueAddedService
      */
-    public function setName(?string $name): ValueAddedService
+    public function setName(string $name): ValueAddedService
     {
         $this->name = $name;
         return $this;
@@ -77,6 +56,9 @@ class ValueAddedService extends MandaeObject
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [

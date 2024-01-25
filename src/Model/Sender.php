@@ -2,86 +2,40 @@
 
 namespace ChicoRei\Packages\Mandae\Model;
 
-use ChicoRei\Packages\Mandae\MandaeObject;
-
-class Sender extends MandaeObject
+class Sender extends Recipient
 {
     /**
-     * Full name
+     * IE
      *
      * @var null|string
      */
-    public $fullName;
+    public $ie;
 
     /**
-     * Address
-     *
-     * @var null|Address
+     * @return string|null
      */
-    public $address;
-
-    /**
-     * Sender constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
+    public function getIe(): ?string
     {
-        parent::__construct($values);
+        return $this->ie;
     }
 
     /**
-     * @param $array
+     * @param string|null $ie
      * @return Sender
      */
-    public static function createFromArray(array $array = [])
+    public function setIe(?string $ie): Sender
     {
-        return new self([
-            'fullName' => $array['fullName'] ?? null,
-            'address' => Address::createFromArray($array['address'] ?? []),
-        ]);
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getFullName(): ?string
-    {
-        return $this->fullName;
-    }
-
-    /**
-     * @param null|string $fullName
-     * @return Sender
-     */
-    public function setFullName(?string $fullName): Sender
-    {
-        $this->fullName = $fullName;
+        $this->ie = $ie;
         return $this;
     }
 
     /**
-     * @return Address|null
+     * @return array
      */
-    public function getAddress(): ?Address
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param Address|null $address
-     * @return Sender
-     */
-    public function setAddress(?Address $address): Sender
-    {
-        $this->address = $address;
-        return $this;
-    }
-
     public function toArray(): array
     {
-        return [
-            'fullName' => $this->getFullName(),
-            'address' => $this->getAddress() ? $this->getAddress()->toArray() : null,
-        ];
+        return array_merge(parent::toArray(), [
+            'ie' => $this->getIe(),
+        ]);
     }
 }

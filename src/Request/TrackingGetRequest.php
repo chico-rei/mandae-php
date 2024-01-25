@@ -15,27 +15,7 @@ class TrackingGetRequest extends MandaeObject implements IRequest
     public $trackingCode;
 
     /**
-     * TrackingGetRequest constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return TrackingGetRequest
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'trackingCode' => $array['trackingCode'] ?? null,
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string|null
      */
     public function getTrackingCode(): ?string
     {
@@ -43,7 +23,7 @@ class TrackingGetRequest extends MandaeObject implements IRequest
     }
 
     /**
-     * @param null|string $trackingCode
+     * @param string|null $trackingCode
      * @return TrackingGetRequest
      */
     public function setTrackingCode(?string $trackingCode): TrackingGetRequest
@@ -59,7 +39,7 @@ class TrackingGetRequest extends MandaeObject implements IRequest
 
     public function getPath(): string
     {
-        return sprintf('trackings/%s', $this->getTrackingCode());
+        return sprintf('v3/trackings/%s', $this->getTrackingCode());
     }
 
     public function getPayload(): ?array

@@ -29,6 +29,20 @@ class TrackingGetResponse extends MandaeObject
     public $carrierName;
 
     /**
+     * Id Item Parceiro
+     *
+     * @var null|string
+     */
+    public $idItemParceiro;
+
+    /**
+     * Partner Item Id
+     *
+     * @var null|string
+     */
+    public $partnerItemId;
+
+    /**
      * Tracking Events
      *
      * @var Event[]
@@ -36,32 +50,7 @@ class TrackingGetResponse extends MandaeObject
     public $events;
 
     /**
-     * TrackingGetResponse constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return static
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new static([
-            'trackingCode' => $array['trackingCode'],
-            'carrierCode' => $array['carrierCode'],
-            'carrierName' => $array['carrierName'],
-            'events' => array_map(function ($event) {
-                return Event::createFromArray($event);
-            }, $array['events'] ?? []),
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string|null
      */
     public function getTrackingCode(): ?string
     {
@@ -69,7 +58,7 @@ class TrackingGetResponse extends MandaeObject
     }
 
     /**
-     * @param null|string $trackingCode
+     * @param string|null $trackingCode
      * @return TrackingGetResponse
      */
     public function setTrackingCode(?string $trackingCode): TrackingGetResponse
@@ -79,7 +68,7 @@ class TrackingGetResponse extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getCarrierCode(): ?string
     {
@@ -87,7 +76,7 @@ class TrackingGetResponse extends MandaeObject
     }
 
     /**
-     * @param null|string $carrierCode
+     * @param string|null $carrierCode
      * @return TrackingGetResponse
      */
     public function setCarrierCode(?string $carrierCode): TrackingGetResponse
@@ -97,7 +86,7 @@ class TrackingGetResponse extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getCarrierName(): ?string
     {
@@ -105,7 +94,7 @@ class TrackingGetResponse extends MandaeObject
     }
 
     /**
-     * @param null|string $carrierName
+     * @param string|null $carrierName
      * @return TrackingGetResponse
      */
     public function setCarrierName(?string $carrierName): TrackingGetResponse
@@ -115,9 +104,45 @@ class TrackingGetResponse extends MandaeObject
     }
 
     /**
+     * @return string|null
+     */
+    public function getIdItemParceiro(): ?string
+    {
+        return $this->idItemParceiro;
+    }
+
+    /**
+     * @param string|null $idItemParceiro
+     * @return TrackingGetResponse
+     */
+    public function setIdItemParceiro(?string $idItemParceiro): TrackingGetResponse
+    {
+        $this->idItemParceiro = $idItemParceiro;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPartnerItemId(): ?string
+    {
+        return $this->partnerItemId;
+    }
+
+    /**
+     * @param string|null $partnerItemId
+     * @return TrackingGetResponse
+     */
+    public function setPartnerItemId(?string $partnerItemId): TrackingGetResponse
+    {
+        $this->partnerItemId = $partnerItemId;
+        return $this;
+    }
+
+    /**
      * @return Event[]
      */
-    public function getEvents(): array
+    public function getEvents(): ?array
     {
         return $this->events;
     }
@@ -128,16 +153,39 @@ class TrackingGetResponse extends MandaeObject
      */
     public function setEvents(array $events): TrackingGetResponse
     {
-        $this->events = $events;
+        $this->events = array_map(function ($event) {
+            return Event::create($event);
+        }, $events);
+
         return $this;
     }
 
+    /**
+     * @param Event|array $event
+     * @return static
+     */
+    public function addEvent($event)
+    {
+        if (! is_array($this->events)) {
+            $this->events = [];
+        }
+
+        $this->events[] = Event::create($event);
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [
             'trackingCode' => $this->getTrackingCode(),
             'carrierCode' => $this->getCarrierCode(),
             'carrierName' => $this->getCarrierName(),
+            'idItemParceiro' => $this->getIdItemParceiro(),
+            'partnerItemId' => $this->getPartnerItemId(),
             'events' => array_map(function (Event $event) {
                 return $event->toArray();
             }, $this->getEvents() ?? []),

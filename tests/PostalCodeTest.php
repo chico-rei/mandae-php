@@ -24,7 +24,16 @@ class PostalCodeTest extends TestCase
         try {
             $mandae->postalCode()->rates([
                 'postalCode' => '36016450',
-                'dimensions' => ['height' => 20, 'weight' => 1, 'width' => 20, 'length' => 10,]
+                'items' => [
+                    [
+                        'height' => 15,
+                        'weight' => 1,
+                        'width' => 15,
+                        'length' => 10,
+                        'quantity' => 1,
+                        'declaredValue' => 50.3,
+                    ]
+                ]
             ]);
         } catch (MandaeAPIException $e) {
             $this->assertEquals('401', $e->getCode());
@@ -34,7 +43,16 @@ class PostalCodeTest extends TestCase
         try {
             $mandae->postalCode()->rates([
                 'postalCode' => '36016-450',
-                'dimensions' => ['height' => 20, 'weight' => 1, 'width' => 20, 'length' => 10,]
+                'items' => [
+                    [
+                        'height' => 15,
+                        'weight' => 1,
+                        'width' => 15,
+                        'length' => 10,
+                        'quantity' => 1,
+                        'declaredValue' => 50.3,
+                    ]
+                ]
             ]);
         } catch (MandaeAPIException $e) {
             $this->assertEquals('422', $e->getCode());
@@ -47,19 +65,21 @@ class PostalCodeTest extends TestCase
         $mock = new MockHandler([
             new Response(200, [], <<<EOT
                 {
-                   "postalCode":"69945000",
-                   "shippingServices":[
-                      {
-                         "name":"Econômico",
-                         "days":20,
-                         "price":63.18
-                      },
-                      {
-                         "name":"Rápido",
-                         "days":12,
-                         "price":81.68
-                      }
-                   ]
+                    "data": {
+                       "postalCode":"36016450",
+                       "shippingServices":[
+                          {
+                             "name":"Econômico",
+                             "days":20,
+                             "price":63.18
+                          },
+                          {
+                             "name":"Rápido",
+                             "days":12,
+                             "price":81.68
+                          }
+                       ]
+                   }
                 }
 EOT
             ),
@@ -69,11 +89,20 @@ EOT
         $mandae = new Mandae('TOKEN', true, ['handler' => $handler]);
 
         $response = $mandae->postalCode()->rates([
-            'postalCode' => '69945000',
-            'dimensions' => ['height' => 20, 'weight' => 1, 'width' => 20, 'length' => 10,]
+            'postalCode' => '36016450',
+            'items' => [
+                [
+                    'height' => 15,
+                    'weight' => 1,
+                    'width' => 15,
+                    'length' => 10,
+                    'quantity' => 1,
+                    'declaredValue' => 50.3,
+                ]
+            ]
         ]);
 
-        $this->assertEquals('69945000', $response->getPostalCode());
+        $this->assertEquals('36016450', $response->getPostalCode());
         $this->assertEquals(2, count($response->getShippingServices()));
         $this->assertEquals(63.18, $response->getEconomicShipping()->getPrice());
         $this->assertEquals(81.68, $response->getFastShipping()->getPrice());

@@ -5,6 +5,7 @@ namespace ChicoRei\Packages\Mandae\Request;
 use ChicoRei\Packages\Mandae\IRequest;
 use ChicoRei\Packages\Mandae\MandaeObject;
 use ChicoRei\Packages\Mandae\Model\Dimensions;
+use ChicoRei\Packages\Mandae\Model\Item;
 
 class PostalCodeRatesRequest extends MandaeObject implements IRequest
 {
@@ -16,43 +17,14 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
     public $postalCode;
 
     /**
-     * Declared value
+     * Items
      *
-     * @var null|float
+     * @var Item[]
      */
-    public $declaredValue;
+    public $items;
 
     /**
-     * Declared value
-     *
-     * @var null|Dimensions
-     */
-    public $dimensions;
-
-    /**
-     * PostalCodeRatesRequest constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return PostalCodeRatesRequest
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'postalCode' => $array['postalCode'] ?? null,
-            'declaredValue' => $array['declaredValue'] ?? null,
-            'dimensions' => Dimensions::createFromArray($array['dimensions'] ?? []),
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string|null
      */
     public function getPostalCode(): ?string
     {
@@ -60,7 +32,7 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
     }
 
     /**
-     * @param null|string $postalCode
+     * @param string|null $postalCode
      * @return PostalCodeRatesRequest
      */
     public function setPostalCode(?string $postalCode): PostalCodeRatesRequest
@@ -70,64 +42,78 @@ class PostalCodeRatesRequest extends MandaeObject implements IRequest
     }
 
     /**
-     * @return float|null
+     * @return array
      */
-    public function getDeclaredValue(): ?float
+    public function getItems(): ?array
     {
-        return $this->declaredValue;
+        return $this->items;
     }
 
     /**
-     * @param float|null $declaredValue
+     * @param array $items
      * @return PostalCodeRatesRequest
      */
-    public function setDeclaredValue(?float $declaredValue): PostalCodeRatesRequest
+    public function setItems(array $items): PostalCodeRatesRequest
     {
-        $this->declaredValue = $declaredValue;
+        $this->items = array_map(function ($item) {
+            return Item::create($item);
+        }, $items);
+
         return $this;
     }
 
     /**
-     * @return Dimensions|null
-     */
-    public function getDimensions(): ?Dimensions
-    {
-        return $this->dimensions;
-    }
-
-    /**
-     * @param Dimensions|null $dimensions
+     * @param array $item
      * @return PostalCodeRatesRequest
      */
-    public function setDimensions(?Dimensions $dimensions): PostalCodeRatesRequest
+    public function addItem(array $item): PostalCodeRatesRequest
     {
-        $this->dimensions = $dimensions;
+        if (! is_array($this->items)) {
+            $this->items = [];
+        }
+
+        $this->items[] = Item::create($item);
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getMethod(): string
     {
         return 'POST';
     }
 
+    /**
+     * @return string
+     */
     public function getPath(): string
     {
-        return sprintf('postalcodes/%s/rates', $this->getPostalCode());
+        return sprintf('v3/postalcodes/%s/rates', $this->getPostalCode());
     }
 
+    /**
+     * @return array|null
+     */
     public function getPayload(): ?array
     {
-        return array_merge([
-            'declaredValue' => $this->declaredValue,
-        ], $this->dimensions->toArray());
+        $payload = $this->toArray();
+        unset($payload['postalCode']);
+
+        return $payload;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [
             'postalCode' => $this->getPostalCode(),
-            'declaredValue' => $this->getDeclaredValue(),
-            'dimensions' => $this->getDimensions() ? $this->getDimensions()->toArray() : null,
+            'items' => array_map(function (Item $item) {
+                return $item->toArray();
+            }, $this->getItems()),
         ];
     }
 }

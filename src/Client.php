@@ -16,12 +16,12 @@ class Client
     /**
      * @var Guzzle
      */
-    private $guzzle;
+    private Guzzle $guzzle;
 
     /**
      * @var ResponseInterface
      */
-    private $lastSuccessfulResponse;
+    private ResponseInterface $lastResponse;
 
     /**
      * @param $apiToken
@@ -52,13 +52,13 @@ class Client
         try {
             $payload = $request->getPayload();
 
-            $this->lastSuccessfulResponse = $this->guzzle->request(
+            $this->lastResponse = $this->guzzle->request(
                 $request->getMethod(),
                 $request->getPath(),
                 ['json' => Util::cleanArray($payload)]
             );
 
-            $parsedResponse = $this->handleResponse($this->lastSuccessfulResponse);
+            $parsedResponse = $this->handleResponse($this->lastResponse);
 
             if (isset($parsedResponse['error'])) {
                 // Mandae API isn't responding with correct HTTP Status on some ending points
@@ -66,12 +66,14 @@ class Client
                     $parsedResponse['error']['message'],
                     $parsedResponse['error']['code'],
                     null,
-                    $this->lastSuccessfulResponse
+                    $this->lastResponse
                 );
             }
 
             return $parsedResponse;
         } catch (ServerException | ClientException $exception) {
+            $this->lastResponse = $exception->getResponse();
+
             $response = $this->handleResponse($exception->getResponse());
             $message = $response['error']['message'] ?? $exception->getMessage();
             $code = $response['error']['code'] ?? $exception->getCode();
@@ -83,7 +85,7 @@ class Client
                 $exception->getResponse()
             );
         } catch (GuzzleException | RequestException $exception) {
-            throw new MandaeClientException($exception->getMessage(), $exception->getCode());
+            throw new MandaeClientException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
@@ -99,12 +101,12 @@ class Client
     }
 
     /**
-     * Get the last successfull response from API
+     * Get the last response from API
      *
      * @return ResponseInterface|null
      */
-    public function getLastSuccessfulResponse(): ?ResponseInterface
+    public function getLastResponse(): ?ResponseInterface
     {
-        return $this->lastSuccessfulResponse;
+        return $this->lastResponse;
     }
 }

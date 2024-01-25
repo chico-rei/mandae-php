@@ -2,126 +2,68 @@
 
 namespace ChicoRei\Packages\Mandae\Response;
 
-use Carbon\Carbon;
 use ChicoRei\Packages\Mandae\Model\Order;
 
 class OrderAddParcelResponse extends Order
 {
     /**
-     * Customer Id
+     * Id
+     *
+     * @var null|int
+     */
+    public ?int $id;
+
+    /**
+     * Vehicle
      *
      * @var null|string
      */
-    public $jobId;
+    public ?string $vehicle;
 
     /**
-     * Pickup Date
-     *
-     * @var null|Carbon
+     * @return int|null
      */
-    public $pickupDate;
-
-    /**
-     * Processing Date
-     *
-     * @var null|Carbon
-     */
-    public $processingDate;
-
-    /**
-     * OrderAddParcelResponse constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
+    public function getId(): ?int
     {
-        parent::__construct($values);
+        return $this->id;
     }
 
     /**
-     * @param $array
-     * @return static
-     */
-    public static function createFromArray(array $array = [])
-    {
-        /** @var OrderAddParcelResponse $self */
-        $self = parent::createFromArray($array);
-        $self->setJobId($array['jobId'] ?? null);
-        $self->setPickupDate(isset($array['pickupDate']) ? Carbon::parse($array['pickupDate']) : null);
-        $self->setProcessingDate(isset($array['processingDate']) ? Carbon::parse($array['processingDate']) : null);
-
-        return $self;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getJobId(): ?string
-    {
-        return $this->jobId;
-    }
-
-    /**
-     * @param null|string $jobId
+     * @param int|null $id
      * @return OrderAddParcelResponse
      */
-    public function setJobId(?string $jobId): OrderAddParcelResponse
+    public function setId(?int $id): OrderAddParcelResponse
     {
-        $this->jobId = $jobId;
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * @return Carbon|null
+     * @return string|null
      */
-    public function getPickupDate(): ?Carbon
+    public function getVehicle(): ?string
     {
-        return $this->pickupDate;
+        return $this->vehicle;
     }
 
     /**
-     * @param Carbon|null $pickupDate
+     * @param string|null $vehicle
      * @return OrderAddParcelResponse
      */
-    public function setPickupDate(?Carbon $pickupDate): OrderAddParcelResponse
+    public function setVehicle(?string $vehicle): OrderAddParcelResponse
     {
-        $this->pickupDate = $pickupDate;
+        $this->vehicle = $vehicle;
         return $this;
     }
 
     /**
-     * @return Carbon|null
+     * @return array
      */
-    public function getProcessingDate(): ?Carbon
-    {
-        return $this->processingDate;
-    }
-
-    /**
-     * @param Carbon|null $processingDate
-     * @return OrderAddParcelResponse
-     */
-    public function setProcessingDate(?Carbon $processingDate): OrderAddParcelResponse
-    {
-        $this->processingDate = $processingDate;
-        return $this;
-    }
-
-    /**
-     * Check if Add Parcel response was async
-     *
-     * @return bool
-     */
-    public function isAsync(): bool
-    {
-        return !is_null($this->jobId);
-    }
-
     public function toArray(): array
     {
-        return array_merge([
-            'jobId' => $this->getJobId(),
-            'pickupDate' => $this->getPickupDate() ? (string)$this->getPickupDate() : null,
-            'processingDate' => $this->getProcessingDate() ? (string)$this->getProcessingDate() : null,
-        ], parent::toArray());
+        return array_merge(parent::toArray(), [
+            'id' => $this->getId(),
+            'vehicle' => $this->getVehicle(),
+        ]);
     }
 }

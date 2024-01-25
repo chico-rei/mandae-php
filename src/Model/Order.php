@@ -2,66 +2,30 @@
 
 namespace ChicoRei\Packages\Mandae\Model;
 
-use Carbon\Carbon;
 use ChicoRei\Packages\Mandae\MandaeObject;
 
 abstract class Order extends MandaeObject
 {
     /**
-     * Vehicle valid options
-     */
-    const VEHICLE_CAR = 'Car';
-    const VEHICLE_MOTORCYCLE = 'Motorcyle';
-    const VEHICLE_DROPOFF = 'DropOff';
-
-    /**
-     * Id
-     *
-     * @var null|int
-     */
-    public $id;
-
-    /**
      * Customer Id
      *
-     * @var null|string
+     * @var string
      */
-    public $customerId;
+    public string $customerId;
 
     /**
-     * Scheduling Date
+     * New NewItem
      *
-     * @var null|Carbon
-     */
-    public $scheduling;
-
-    /**
-     * New Item
-     *
-     * @var null|Item[]
+     * @var null|NewItem[]
      */
     public $items;
 
     /**
-     * Sender
-     *
-     * @var null|Sender
-     */
-    public $sender;
-
-    /**
-     * Vehicle
+     * Seller Id
      *
      * @var null|string
      */
-    public $vehicle;
-
-    /**
-     * Label
-     *
-     * @var null|Sender
-     */
-    public $label;
+    public $sellerId;
 
     /**
      * Observation
@@ -71,53 +35,7 @@ abstract class Order extends MandaeObject
     public $observation;
 
     /**
-     * Customer Id
-     *
-     * @var null|string
-     */
-    public $partnerOrderId;
-
-    /**
-     * @param $array
-     * @return static
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new static([
-            'id' => $array['id'] ?? null,
-            'customerId' => $array['customerId'] ?? null,
-            'scheduling' => isset($array['scheduling']) ? Carbon::parse($array['scheduling']) : null,
-            'items' => array_map(function ($newItem) {
-                return Item::createFromArray($newItem);
-            }, $array['items'] ?? []),
-            'sender' => Sender::createFromArray($array['sender'] ?? []),
-            'vehicle' => $array['vehicle'] ?? null,
-            'label' => isset($array['label']) ? Sender::createFromArray($array['label']) : null,
-            'observation' => $array['observation'] ?? null,
-            'partnerOrderId' => $array['partnerOrderId'] ?? null,
-        ]);
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     * @return static
-     */
-    public function setId(?int $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return null|string
+     * @return string
      */
     public function getCustomerId(): ?string
     {
@@ -125,35 +43,17 @@ abstract class Order extends MandaeObject
     }
 
     /**
-     * @param null|string $customerId
+     * @param string $customerId
      * @return static
      */
-    public function setCustomerId(?string $customerId): self
+    public function setCustomerId(string $customerId): Order
     {
         $this->customerId = $customerId;
         return $this;
     }
 
     /**
-     * @return Carbon|null
-     */
-    public function getScheduling(): ?Carbon
-    {
-        return $this->scheduling;
-    }
-
-    /**
-     * @param Carbon|null $scheduling
-     * @return static
-     */
-    public function setScheduling(?Carbon $scheduling): self
-    {
-        $this->scheduling = $scheduling;
-        return $this;
-    }
-
-    /**
-     * @return Item[]|null
+     * @return NewItem[]|null
      */
     public function getItems(): ?array
     {
@@ -161,71 +61,53 @@ abstract class Order extends MandaeObject
     }
 
     /**
-     * @param Item[]|null $items
+     * @param NewItem[]|null $items
      * @return static
      */
-    public function setItems(?array $items): self
+    public function setItems(?array $items)
     {
-        $this->items = $items;
+        $this->items = array_map(function ($item) {
+            return NewItem::create($item);
+        }, $items);
+
         return $this;
     }
 
     /**
-     * @return Sender|null
-     */
-    public function getSender(): ?Sender
-    {
-        return $this->sender;
-    }
-
-    /**
-     * @param Sender|null $sender
+     * @param NewItem|array $item
      * @return static
      */
-    public function setSender(?Sender $sender): self
+    public function addItem($item)
     {
-        $this->sender = $sender;
+        if (! is_array($this->items)) {
+            $this->items = [];
+        }
+
+        $this->items[] = NewItem::create($item);
+
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getVehicle(): ?string
+    public function getSellerId(): ?string
     {
-        return $this->vehicle;
+        return $this->sellerId;
     }
 
     /**
-     * @param null|string $vehicle
+     * @param string|null $sellerId
      * @return static
      */
-    public function setVehicle(?string $vehicle): self
+    public function setSellerId(?string $sellerId): Order
     {
-        $this->vehicle = $vehicle;
+        $this->sellerId = $sellerId;
         return $this;
     }
 
     /**
-     * @return Sender|null
-     */
-    public function getLabel(): ?Sender
-    {
-        return $this->label;
-    }
-
-    /**
-     * @param Sender|null $label
-     * @return static
-     */
-    public function setLabel(?Sender $label): self
-    {
-        $this->label = $label;
-        return $this;
-    }
-
-    /**
-     * @return null|string
+     * @return string|null
      */
     public function getObservation(): ?string
     {
@@ -233,47 +115,27 @@ abstract class Order extends MandaeObject
     }
 
     /**
-     * @param null|string $observation
+     * @param string|null $observation
      * @return static
      */
-    public function setObservation(?string $observation): self
+    public function setObservation(?string $observation): Order
     {
         $this->observation = $observation;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return array
      */
-    public function getPartnerOrderId(): ?string
-    {
-        return $this->partnerOrderId;
-    }
-
-    /**
-     * @param null|string $partnerOrderId
-     * @return static
-     */
-    public function setPartnerOrderId(?string $partnerOrderId): self
-    {
-        $this->partnerOrderId = $partnerOrderId;
-        return $this;
-    }
-
     public function toArray(): array
     {
         return [
-            'id' => $this->getId(),
             'customerId' => $this->getCustomerId(),
-            'scheduling' => $this->getScheduling() ? $this->getScheduling()->toAtomString() : null,  // Atom outputs the correct ISO8601 on any Carbon Version. See: https://github.com/briannesbitt/Carbon/issues/861
-            'items' => array_map(function (Item $newItem) {
+            'items' => array_map(function (NewItem $newItem) {
                 return $newItem->toArray();
             }, $this->getItems() ?? []),
-            'sender' => $this->getSender() ? $this->getSender()->toArray() : null,
-            'vehicle' => $this->getVehicle(),
-            'label' => $this->getLabel() ? $this->getLabel()->toArray() : null,
+            'sellerId' => $this->getSellerId(),
             'observation' => $this->getObservation(),
-            'partnerOrderId' => $this->getPartnerOrderId(),
         ];
     }
 }

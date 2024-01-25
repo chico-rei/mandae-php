@@ -12,86 +12,52 @@ class ItemProcessed extends MandaeObject
      *
      * @var null|string
      */
-    public $id;
+    public ?string $id;
 
     /**
      * Partner Item Id
      *
      * @var null|string
      */
-    public $partnerItemId;
+    public ?string $partnerItemId;
 
     /**
      * Tracking Code
      *
      * @var null|string
      */
-    public $trackingCode;
+    public ?string $trackingCode;
 
     /**
      * Tracking URL
      *
      * @var null|string
      */
-    public $trackingUrl;
+    public ?string $trackingUrl;
 
     /**
      * Price
      *
      * @var null|float
      */
-    public $price;
+    public ?float $price;
 
     /**
      * Dimensions
      *
      * @var null|Dimensions
      */
-    public $dimensions;
+    public ?Dimensions $dimensions;
 
     /**
      * Reference
      *
      * @var null|string
      */
-    public $reference;
+    public ?string $reference;
 
     /**
-     * QR Codes
-     *
-     * @var null|string[]
-     */
-    public $qrCodes;
-
-    /**
-     * ItemProcessed constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return ItemProcessed
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'id' => $array['id'] ?? null,
-            'partnerItemId' => $array['partnerItemId'] ?? null,
-            'trackingCode' => $array['trackingCode'] ?? null,
-            'trackingUrl' => $array['trackingUrl'] ?? null,
-            'price' => $array['price'] ?? null,
-            'dimensions' => Dimensions::createFromArray($array['dimensions'] ?? []),
-            'reference' => $array['reference'] ?? null,
-            'qrCodes' => $array['qrCodes'] ?? null,
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string|null
      */
     public function getId(): ?string
     {
@@ -99,7 +65,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @param null|string $id
+     * @param string|null $id
      * @return ItemProcessed
      */
     public function setId(?string $id): ItemProcessed
@@ -109,7 +75,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getPartnerItemId(): ?string
     {
@@ -117,7 +83,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @param null|string $partnerItemId
+     * @param string|null $partnerItemId
      * @return ItemProcessed
      */
     public function setPartnerItemId(?string $partnerItemId): ItemProcessed
@@ -127,7 +93,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getTrackingCode(): ?string
     {
@@ -135,7 +101,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @param null|string $trackingCode
+     * @param string|null $trackingCode
      * @return ItemProcessed
      */
     public function setTrackingCode(?string $trackingCode): ItemProcessed
@@ -145,7 +111,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getTrackingUrl(): ?string
     {
@@ -153,7 +119,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @param null|string $trackingUrl
+     * @param string|null $trackingUrl
      * @return ItemProcessed
      */
     public function setTrackingUrl(?string $trackingUrl): ItemProcessed
@@ -199,7 +165,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getReference(): ?string
     {
@@ -207,7 +173,7 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @param null|string $reference
+     * @param string|null $reference
      * @return ItemProcessed
      */
     public function setReference(?string $reference): ItemProcessed
@@ -217,23 +183,8 @@ class ItemProcessed extends MandaeObject
     }
 
     /**
-     * @return null|string[]
+     * @return array
      */
-    public function getQrCodes(): ?array
-    {
-        return $this->qrCodes;
-    }
-
-    /**
-     * @param null|string[] $qrCodes
-     * @return ItemProcessed
-     */
-    public function setQrCodes(?array $qrCodes): ItemProcessed
-    {
-        $this->qrCodes = $qrCodes;
-        return $this;
-    }
-
     public function toArray(): array
     {
         return [
@@ -244,7 +195,6 @@ class ItemProcessed extends MandaeObject
             'price' => $this->getPrice(),
             'dimensions' => $this->getDimensions() ? $this->getDimensions()->toArray() : null,
             'reference' => $this->getReference(),
-            'qrCodes' => $this->getQrCodes(),
         ];
     }
 }

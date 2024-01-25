@@ -17,12 +17,10 @@ class Util
         }
 
         foreach ($array as $key => &$value) {
-            if (is_null($value)) {
+            if (is_null($value) || (is_array($value) && count($value) === 0)) {
                 unset($array[$key]);
-            } else {
-                if (is_array($value)) {
-                    Util::cleanArray($value);
-                }
+            } elseif (is_array($value)) {
+                Util::cleanArray($value);
             }
         }
 

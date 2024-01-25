@@ -9,21 +9,21 @@ class Address extends MandaeObject
     /**
      * Postal Code (only numbers)
      *
-     * @var null|string
+     * @var string
      */
     public $postalCode;
 
     /**
      * Street
      *
-     * @var null|string
+     * @var string
      */
     public $street;
 
     /**
      * Number
      *
-     * @var null|string
+     * @var string
      */
     public $number;
 
@@ -37,28 +37,28 @@ class Address extends MandaeObject
     /**
      * Neighborhood
      *
-     * @var null|string
+     * @var string|null
      */
     public $neighborhood;
 
     /**
      * City
      *
-     * @var null|string
+     * @var string
      */
     public $city;
 
     /**
      * State
      *
-     * @var null|string
+     * @var string
      */
     public $state;
 
     /**
      * Country (ISO 3166-1)
      *
-     * @var null|string
+     * @var string
      */
     public $country;
 
@@ -70,35 +70,7 @@ class Address extends MandaeObject
     public $reference;
 
     /**
-     * Address constructor.
-     * @param array $values
-     */
-    public function __construct(array $values = [])
-    {
-        parent::__construct($values);
-    }
-
-    /**
-     * @param $array
-     * @return Address
-     */
-    public static function createFromArray(array $array = [])
-    {
-        return new self([
-            'postalCode' => $array['postalCode'] ?? null,
-            'street' => $array['street'] ?? null,
-            'number' => $array['number'] ?? null,
-            'addressLine2' => $array['addressLine2'] ?? null,
-            'neighborhood' => $array['neighborhood'] ?? null,
-            'city' => $array['city'] ?? null,
-            'state' => $array['state'] ?? null,
-            'country' => $array['country'] ?? null,
-            'reference' => $array['reference'] ?? null,
-        ]);
-    }
-
-    /**
-     * @return null|string
+     * @return string
      */
     public function getPostalCode(): ?string
     {
@@ -106,17 +78,17 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $postalCode
+     * @param string $postalCode
      * @return Address
      */
-    public function setPostalCode(?string $postalCode): Address
+    public function setPostalCode(string $postalCode): Address
     {
         $this->postalCode = $postalCode;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getStreet(): ?string
     {
@@ -124,17 +96,17 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $street
+     * @param string $street
      * @return Address
      */
-    public function setStreet(?string $street): Address
+    public function setStreet(string $street): Address
     {
         $this->street = $street;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getNumber(): ?string
     {
@@ -142,17 +114,17 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $number
+     * @param string $number
      * @return Address
      */
-    public function setNumber(?string $number): Address
+    public function setNumber(string $number): Address
     {
         $this->number = $number;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getAddressLine2(): ?string
     {
@@ -160,7 +132,7 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $addressLine2
+     * @param string|null $addressLine2
      * @return Address
      */
     public function setAddressLine2(?string $addressLine2): Address
@@ -170,7 +142,7 @@ class Address extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getNeighborhood(): ?string
     {
@@ -178,7 +150,7 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $neighborhood
+     * @param string|null $neighborhood
      * @return Address
      */
     public function setNeighborhood(?string $neighborhood): Address
@@ -188,7 +160,7 @@ class Address extends MandaeObject
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getCity(): ?string
     {
@@ -196,17 +168,17 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $city
+     * @param string $city
      * @return Address
      */
-    public function setCity(?string $city): Address
+    public function setCity(string $city): Address
     {
         $this->city = $city;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getState(): ?string
     {
@@ -214,17 +186,17 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $state
+     * @param string $state
      * @return Address
      */
-    public function setState(?string $state): Address
+    public function setState(string $state): Address
     {
         $this->state = $state;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getCountry(): ?string
     {
@@ -232,17 +204,17 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $country
+     * @param string $country
      * @return Address
      */
-    public function setCountry(?string $country): Address
+    public function setCountry(string $country): Address
     {
         $this->country = $country;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getReference(): ?string
     {
@@ -250,7 +222,7 @@ class Address extends MandaeObject
     }
 
     /**
-     * @param null|string $reference
+     * @param string|null $reference
      * @return Address
      */
     public function setReference(?string $reference): Address
@@ -259,6 +231,9 @@ class Address extends MandaeObject
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [

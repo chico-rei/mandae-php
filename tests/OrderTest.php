@@ -9,7 +9,7 @@ class OrderTest extends TestCase
 {
     public function testeOrderAddParcelRequestObj()
     {
-        $orderAddParcelReq = OrderAddParcelRequest::createFromArray([
+        $orderAddParcelReq = OrderAddParcelRequest::create([
             "customerId" => "CUSTOMER",
             "scheduling" => "2017-06-30T11:00:00-03:00",
             "items" => [
@@ -43,7 +43,7 @@ class OrderTest extends TestCase
                         "key" => "9999999999999999999999999999999999999"
                     ],
                     "trackingId" => "CHRI123456",
-                    "observation" => "Item frágil",
+                    "observation" => "NewItem frágil",
                     "recipient" => [
                         "fullName" => "João Destinatário",
                         "phone" => "(11)91111-1111",
@@ -92,16 +92,6 @@ class OrderTest extends TestCase
         ]);
 
         $this->assertEquals('CUSTOMER', $orderAddParcelReq->getCustomerId());
-        $this->assertEquals('2017-06-30T11:00:00-03:00', $orderAddParcelReq->getScheduling()->toAtomString());
         $this->assertEquals(1, count($orderAddParcelReq->getItems()));
-        $this->assertEquals('Car', $orderAddParcelReq->getVehicle());
-        $this->assertEquals('Chico Rei', $orderAddParcelReq->getSender()->getFullName());
-        $this->assertEquals('36038090', $orderAddParcelReq->getSender()->getAddress()->getPostalCode());
-        $this->assertEquals('Rua Jorge Fayer', $orderAddParcelReq->getSender()->getAddress()->getStreet());
-        $this->assertEquals('55', $orderAddParcelReq->getSender()->getAddress()->getNumber());
-        $this->assertEquals('Bairro Santos Dummont', $orderAddParcelReq->getSender()->getAddress()->getNeighborhood());
-        $this->assertEquals('Juiz de Fora', $orderAddParcelReq->getSender()->getAddress()->getCity());
-        $this->assertEquals('MG', $orderAddParcelReq->getSender()->getAddress()->getState());
-        $this->assertEquals('BR', $orderAddParcelReq->getSender()->getAddress()->getCountry());
     }
 }
