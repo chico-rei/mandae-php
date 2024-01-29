@@ -5,7 +5,6 @@
     "keywords": ["Mandae","Manda Aê", "Mandae V3"],
     "homepage": "https://github.com/chico-rei/mandae-php",
     "license": "MIT",
-    "version": "1.0",
     "authors": [{
         "name": "Chico Rei",
         "email": "php@chicorei.com.br"
