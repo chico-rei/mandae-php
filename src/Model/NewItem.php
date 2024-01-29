@@ -221,7 +221,7 @@ class NewItem extends MandaeObject
             $this->skus = [];
         }
 
-        $this->skus[] = NewItem::create($sku);
+        $this->skus[] = Sku::create($sku);
 
         return $this;
     }
