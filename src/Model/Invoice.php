@@ -9,21 +9,21 @@ class Invoice extends MandaeObject
     /**
      * Id
      *
-     * @var string
+     * @var string|null
      */
     public $id;
 
     /**
      * Key
      *
-     * @var string
+     * @var string|null
      */
     public $key;
 
     /**
      * Type
      *
-     * @var string
+     * @var string|null
      */
     public $type;
 
@@ -36,10 +36,10 @@ class Invoice extends MandaeObject
     }
 
     /**
-     * @param string $id
+     * @param string|null $id
      * @return Invoice
      */
-    public function setId(string $id): Invoice
+    public function setId(?string $id): Invoice
     {
         $this->id = $id;
         return $this;
@@ -54,10 +54,10 @@ class Invoice extends MandaeObject
     }
 
     /**
-     * @param string $key
+     * @param string|null $key
      * @return Invoice
      */
-    public function setKey(string $key): Invoice
+    public function setKey(?string $key): Invoice
     {
         $this->key = $key;
         return $this;
@@ -72,10 +72,10 @@ class Invoice extends MandaeObject
     }
 
     /**
-     * @param string $type
+     * @param string|null $type
      * @return Invoice
      */
-    public function setType(string $type): Invoice
+    public function setType(?string $type): Invoice
     {
         $this->type = $type;
         return $this;
