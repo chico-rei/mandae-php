@@ -70,12 +70,12 @@ class Event extends MandaeObject
     }
 
     /**
-     * @param Carbon|string $date
+     * @param Carbon|string|null $date
      * @return Event
      */
     public function setDate($date): Event
     {
-        $this->date = Carbon::parse($date);
+        $this->date = $date ? Carbon::parse($date) : null;
         return $this;
     }
 
@@ -88,13 +88,21 @@ class Event extends MandaeObject
     }
 
     /**
-     * @param Carbon|string $timestamp
+     * @param Carbon|string|null $timestamp
      * @return Event
      */
     public function setTimestamp($timestamp): Event
     {
-        $this->timestamp = $timestamp instanceof Carbon
-            ? $timestamp : Carbon::createFromFormat("Y-m-d\TH:i:s", $timestamp);
+        $this->timestamp = $timestamp;
+
+        if ($timestamp && ! ($timestamp instanceof Carbon)) {
+            try {
+                $this->timestamp = Carbon::createFromFormat("Y-m-d\TH:i:s", $timestamp);
+            } catch (\Exception $e) {
+                $this->timestamp = Carbon::parse($timestamp);
+            }
+        }
+
         return $this;
     }
 
