@@ -11,14 +11,14 @@ class OrderAddParcelResponse extends Order
      *
      * @var null|int
      */
-    public ?int $id;
+    public ?int $id = null;
 
     /**
      * Vehicle
      *
      * @var null|string
      */
-    public ?string $vehicle;
+    public ?string $vehicle = null;
 
     /**
      * @return int|null

@@ -15,7 +15,7 @@ Via [Composer](https://getcomposer.org/)
 $ composer require chico-rei/mandae-php
 ```
 
-Requires PHP 7.4 or newer.
+Requires PHP 8.2 or newer.
 
 ## Testing
 

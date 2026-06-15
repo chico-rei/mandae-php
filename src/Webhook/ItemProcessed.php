@@ -12,49 +12,49 @@ class ItemProcessed extends MandaeObject
      *
      * @var null|string
      */
-    public ?string $id;
+    public ?string $id = null;
 
     /**
      * Partner Item Id
      *
      * @var null|string
      */
-    public ?string $partnerItemId;
+    public ?string $partnerItemId = null;
 
     /**
      * Tracking Code
      *
      * @var null|string
      */
-    public ?string $trackingCode;
+    public ?string $trackingCode = null;
 
     /**
      * Tracking URL
      *
      * @var null|string
      */
-    public ?string $trackingUrl;
+    public ?string $trackingUrl = null;
 
     /**
      * Price
      *
      * @var null|float
      */
-    public ?float $price;
+    public ?float $price = null;
 
     /**
      * Dimensions
      *
      * @var null|Dimensions
      */
-    public ?Dimensions $dimensions;
+    public ?Dimensions $dimensions = null;
 
     /**
      * Reference
      *
      * @var null|string
      */
-    public ?string $reference;
+    public ?string $reference = null;
 
     /**
      * @return string|null

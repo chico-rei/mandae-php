@@ -10,9 +10,9 @@ class PostalCodeRatesResponse extends MandaeObject
     /**
      * Postal Code
      *
-     * @var string
+     * @var string|null
      */
-    public ?string $postalCode;
+    public ?string $postalCode = null;
 
     /**
      * Available Shipping Services
@@ -22,9 +22,9 @@ class PostalCodeRatesResponse extends MandaeObject
     public array $shippingServices = [];
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPostalCode(): string
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
